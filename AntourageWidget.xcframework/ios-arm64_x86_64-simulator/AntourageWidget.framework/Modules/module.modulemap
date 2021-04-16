@@ -1,0 +1,11 @@
+framework module AntourageWidget {
+  umbrella header "AntourageWidget.h"
+
+  export *
+  module * { export * }
+}
+
+module AntourageWidget.Swift {
+    header "AntourageWidget-Swift.h"
+    requires objc
+}
