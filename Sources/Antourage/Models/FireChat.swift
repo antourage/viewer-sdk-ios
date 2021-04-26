@@ -1,6 +1,6 @@
 import Foundation
 import Firebase
-import AntourageWidget
+import AntourageViewer
 
 final class FireChat: Chat {
   private var ref: DocumentReference?

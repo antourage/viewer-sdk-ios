@@ -8,9 +8,9 @@ Pod::Spec.new do |spec|
   spec.documentation_url   = 'https://antourage.github.io'
   
   spec.platform            = :ios, "11.3"
-  spec.source              = { :git => 'https://github.com/antourage/widget-sdk-ios.git', :tag => spec.version.to_s }
+  spec.source              = { :git => 'https://github.com/antourage/viewer-sdk-ios.git', :tag => spec.version.to_s }
   spec.source_files        = 'Sources/Antourage/**/*.{swift}'
-  spec.vendored_frameworks = 'AntourageWidget.xcframework'
+  spec.vendored_frameworks = 'AntourageViewer.xcframework'
 
   spec.frameworks = 'Foundation', 'UIKit', 'CoreData', 'AVKit', 'MediaPlayer'
   spec.dependency 'Firebase/Auth'

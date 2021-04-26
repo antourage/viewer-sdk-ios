@@ -1,5 +1,5 @@
 import Foundation
-import AntourageWidget
+import AntourageViewer
 
 struct FireCreator: FirebaseCreator {
   func createPollManager(streamId: Int, path: String) -> PollManager {

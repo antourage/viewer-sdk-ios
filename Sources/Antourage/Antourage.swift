@@ -1,6 +1,6 @@
 import UIKit
 import Firebase
-import AntourageWidget
+import AntourageViewer
 
 @objc
 public class Antourage: NSObject {
@@ -84,7 +84,7 @@ public class Antourage: NSObject {
   
   private func firebaseAuth() {
     if FirebaseApp.app(name: "AntViewerFirebase") == nil {
-      let filePath = Bundle(identifier: "com.antourage.widget")!.path(forResource: "GoogleService-Info", ofType: "plist")
+      let filePath = Bundle(identifier: "com.antourage.viewer")!.path(forResource: "GoogleService-Info", ofType: "plist")
       guard let fileopts = FirebaseOptions(contentsOfFile: filePath!)
         else { return }
       FirebaseApp.configure(name: "AntViewerFirebase", options: fileopts)

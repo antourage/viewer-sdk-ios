@@ -1,4 +1,4 @@
-# Antourage Widget SDK
+# Antourage Viewer SDK
 
 [![Version](https://img.shields.io/cocoapods/v/Antourage.svg?style=flat)](https://cocoapods.org/pods/Antourage)
 [![License](https://img.shields.io/cocoapods/l/Antourage.svg?style=flat)](https://cocoapods.org/pods/Antourage)

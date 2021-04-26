@@ -1,6 +1,6 @@
 import Foundation
 import Firebase
-import AntourageWidget
+import AntourageViewer
 
 final class FirePoll: Poll {
   private var ref: DocumentReference?

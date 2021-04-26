@@ -1,6 +1,6 @@
 import Foundation
 import Firebase
-import AntourageWidget
+import AntourageViewer
 
 final class FirePollManager: PollManager {
   private var streamId: Int
