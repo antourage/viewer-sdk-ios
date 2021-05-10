@@ -1,5 +1,5 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 5.3.2 (swiftlang-1200.0.45 clang-1200.0.32.28)
+// swift-compiler-version: Apple Swift version 5.4 (swiftlang-1205.0.26.9 clang-1205.0.19.55)
 // swift-module-flags: -target arm64-apple-ios11.3 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name AntourageViewer
 import AVFoundation
 import AVKit
@@ -18,85 +18,6 @@ import WebKit
 import os.log
 import os
 import zlib
-@objc final public class ModernAVPlayer : ObjectiveC.NSObject, AntourageViewer.ModernAVPlayerExposable {
-  weak final public var delegate: AntourageViewer.ModernAVPlayerDelegate?
-  final public var player: AVFoundation.AVPlayer {
-    get
-  }
-  final public var state: AntourageViewer.ModernAVPlayer.State {
-    get
-  }
-  final public var currentMedia: AntourageViewer.PlayerMedia? {
-    get
-  }
-  final public var currentTime: Swift.Double {
-    get
-  }
-  final public var loopMode: Swift.Bool {
-    get
-    set
-  }
-  final public var remoteCommands: [AntourageViewer.ModernAVPlayerRemoteCommand]? {
-    get
-    set
-  }
-  public init(player: AVFoundation.AVPlayer = AVPlayer(), config: AntourageViewer.PlayerConfiguration = ModernAVPlayerConfiguration(), plugins: [AntourageViewer.PlayerPlugin] = [], loggerDomains: [AntourageViewer.ModernAVPlayerLoggerDomain] = [])
-  final public func pause()
-  final public func seek(position: Swift.Double)
-  final public func seek(offset: Swift.Double)
-  final public func stop()
-  final public func load(media: AntourageViewer.PlayerMedia, autostart: Swift.Bool, position: Swift.Double? = nil)
-  final public func updateMetadata(_ metadata: AntourageViewer.PlayerMediaMetadata?)
-  final public func play()
-  @objc deinit
-  @objc override dynamic public init()
-}
-extension ModernAVPlayer {
-  public enum State : Swift.String, Swift.CustomStringConvertible {
-    case buffering
-    case failed
-    case initialization
-    case loaded
-    case loading
-    case paused
-    case playing
-    case stopped
-    case waitingForNetwork
-    public var description: Swift.String {
-      get
-    }
-    public typealias RawValue = Swift.String
-    public init?(rawValue: Swift.String)
-    public var rawValue: Swift.String {
-      get
-    }
-  }
-}
-public class HubConnectionBuilder {
-  public init(url: Foundation.URL)
-  public func withHubProtocol(hubProtocolFactory: @escaping (AntourageViewer.Logger) -> AntourageViewer.HubProtocol) -> AntourageViewer.HubConnectionBuilder
-  public func withHttpConnectionOptions(configureHttpOptions: (AntourageViewer.HttpConnectionOptions) -> Swift.Void) -> AntourageViewer.HubConnectionBuilder
-  public func withLogging(minLogLevel: AntourageViewer.LogLevel) -> AntourageViewer.HubConnectionBuilder
-  public func withLogging(logger: AntourageViewer.Logger) -> AntourageViewer.HubConnectionBuilder
-  public func withLogging(minLogLevel: AntourageViewer.LogLevel, logger: AntourageViewer.Logger) -> AntourageViewer.HubConnectionBuilder
-  public func withHubConnectionDelegate(delegate: AntourageViewer.HubConnectionDelegate) -> AntourageViewer.HubConnectionBuilder
-  public func withAutoReconnect(reconnectPolicy: AntourageViewer.ReconnectPolicy = DefaultReconnectPolicy()) -> AntourageViewer.HubConnectionBuilder
-  public func withPermittedTransportTypes(_ permittedTransportTypes: AntourageViewer.TransportType) -> AntourageViewer.HubConnectionBuilder
-  @available(*, deprecated)
-  public func withLegacyHttpConnection() -> AntourageViewer.HubConnectionBuilder
-  public func build() -> AntourageViewer.HubConnection
-  @objc deinit
-}
-extension HubConnectionBuilder {
-  public func withJSONHubProtocol() -> AntourageViewer.HubConnectionBuilder
-}
-public protocol Connection {
-  var delegate: AntourageViewer.ConnectionDelegate? { get set }
-  var connectionId: Swift.String? { get }
-  func start()
-  func send(data: Foundation.Data, sendDidComplete: @escaping (Swift.Error?) -> Swift.Void)
-  func stop(stopError: Swift.Error?)
-}
 @objc public class LatestComment : ObjectiveC.NSObject, Foundation.NSSecureCoding {
   @objc public static var supportsSecureCoding: Swift.Bool {
     @objc get
@@ -110,8 +31,8 @@ public protocol Connection {
   @objc public func encode(with coder: Foundation.NSCoder)
   @objc required convenience public init?(coder: Foundation.NSCoder)
   public init(userID: Swift.String, nickname: Swift.String, text: Swift.String, timestamp: Swift.Int?)
-  @objc deinit
   @objc override dynamic public init()
+  @objc deinit
 }
 @objc @_inheritsConvenienceInitializers public class PollTableViewCell : UIKit.UITableViewCell {
   @objc @IBOutlet public var titleLabel: UIKit.UILabel!
@@ -128,31 +49,27 @@ public protocol Connection {
     set
   }
   @objc override dynamic public func awakeFromNib()
-  @objc deinit
   @available(iOS 3.0, *)
   @objc override dynamic public init(style: UIKit.UITableViewCell.CellStyle, reuseIdentifier: Swift.String?)
   @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
 }
 extension UIViewController : AuthenticationServices.ASWebAuthenticationPresentationContextProviding {
   @available(iOS 13.0, *)
   @objc dynamic public func presentationAnchor(for session: AuthenticationServices.ASWebAuthenticationSession) -> AuthenticationServices.ASPresentationAnchor
 }
-public protocol ModernAVPlayerDelegate : AnyObject {
-  func modernAVPlayer(_ player: AntourageViewer.ModernAVPlayer, didStateChange state: AntourageViewer.ModernAVPlayer.State)
-  func modernAVPlayer(_ player: AntourageViewer.ModernAVPlayer, didCurrentMediaChange media: AntourageViewer.PlayerMedia?)
-  func modernAVPlayer(_ player: AntourageViewer.ModernAVPlayer, didCurrentTimeChange currentTime: Swift.Double)
-  func modernAVPlayer(_ player: AntourageViewer.ModernAVPlayer, didItemDurationChange itemDuration: Swift.Double?)
-  func modernAVPlayer(_ player: AntourageViewer.ModernAVPlayer, unavailableActionReason: AntourageViewer.PlayerUnavailableActionReason)
-  func modernAVPlayer(_ player: AntourageViewer.ModernAVPlayer, didItemPlayToEndTime endTime: Swift.Double)
+public enum MediaType {
+  case clip
+  case stream(isLive: Swift.Bool)
 }
-extension ModernAVPlayerDelegate {
-  public func modernAVPlayer(_ player: AntourageViewer.ModernAVPlayer, didStateChange state: AntourageViewer.ModernAVPlayer.State)
-  public func modernAVPlayer(_ player: AntourageViewer.ModernAVPlayer, didCurrentMediaChange media: AntourageViewer.PlayerMedia?)
-  public func modernAVPlayer(_ player: AntourageViewer.ModernAVPlayer, didCurrentTimeChange currentTime: Swift.Double)
-  public func modernAVPlayer(_ player: AntourageViewer.ModernAVPlayer, didItemDurationChange itemDuration: Swift.Double?)
-  public func modernAVPlayer(_ player: AntourageViewer.ModernAVPlayer, unavailableActionReason: AntourageViewer.PlayerUnavailableActionReason)
-  public func modernAVPlayer(_ player: AntourageViewer.ModernAVPlayer, didItemPlayToEndTime endTime: Swift.Double)
+extension MediaType : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
 }
+extension MediaType : Swift.Equatable {
+}
+public func == (lhs: AntourageViewer.MediaType, rhs: AntourageViewer.MediaType) -> Swift.Bool
 @objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class SeekPaddingView : UIKit.UIView {
   public var soughtTime: Swift.Int {
     get
@@ -169,55 +86,19 @@ extension ModernAVPlayerDelegate {
   @objc override final public func didMoveToSuperview()
   @objc override final public func touchesEnded(_ touches: Swift.Set<UIKit.UITouch>, with event: UIKit.UIEvent?)
   @objc override final public func willMove(toWindow newWindow: UIKit.UIWindow?)
-  @objc deinit
   @objc override dynamic public init(frame: CoreGraphics.CGRect)
   @objc required dynamic public init?(coder: Foundation.NSCoder)
-}
-public class ModernAVPlayerMediaItem : AntourageViewer.PlayerMediaItem {
-  final public let item: AVFoundation.AVPlayerItem
-  final public let url: Foundation.URL
-  final public let type: AntourageViewer.MediaType
-  final public let assetOptions: [Swift.String : Any]?
-  public init?(item: AVFoundation.AVPlayerItem, type: AntourageViewer.MediaType, metadata: AntourageViewer.ModernAVPlayerMediaMetadata? = nil, assetOptions: [Swift.String : Any]? = nil)
-  public func getMetadata() -> AntourageViewer.PlayerMediaMetadata?
-  public func setMetadata(_ metadata: AntourageViewer.PlayerMediaMetadata?)
   @objc deinit
 }
 public enum WidgetPosition : Swift.String {
   case topLeft, midLeft, bottomLeft
   case topMid, bottomMid
   case topRight, midRight, bottomRight
-  public typealias RawValue = Swift.String
   public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
   public var rawValue: Swift.String {
     get
   }
-}
-public struct ModernAVPlayerMediaMetadata : AntourageViewer.PlayerMediaMetadata, Swift.Equatable {
-  public let title: Swift.String?
-  public let albumTitle: Swift.String?
-  public let artist: Swift.String?
-  public let image: Foundation.Data?
-  public let remoteImageUrl: Foundation.URL?
-  public init(title: Swift.String? = nil, albumTitle: Swift.String? = nil, artist: Swift.String? = nil, image: Foundation.Data? = nil, remoteImageUrl: Foundation.URL? = nil)
-  public static func == (a: AntourageViewer.ModernAVPlayerMediaMetadata, b: AntourageViewer.ModernAVPlayerMediaMetadata) -> Swift.Bool
-}
-@_hasMissingDesignatedInitializers public class HttpConnection : AntourageViewer.Connection {
-  weak public var delegate: AntourageViewer.ConnectionDelegate?
-  public var connectionId: Swift.String? {
-    get
-  }
-  convenience public init(url: Foundation.URL, options: AntourageViewer.HttpConnectionOptions = HttpConnectionOptions(), logger: AntourageViewer.Logger = NullLogger())
-  @objc deinit
-  public func start()
-  public func send(data: Foundation.Data, sendDidComplete: @escaping (Swift.Error?) -> Swift.Void)
-  public func stop(stopError: Swift.Error? = nil)
-}
-@_hasMissingDesignatedInitializers public class ConnectionTransportDelegate : AntourageViewer.TransportDelegate {
-  public func transportDidOpen()
-  public func transportDidReceiveData(_ data: Foundation.Data)
-  public func transportDidClose(_ error: Swift.Error?)
-  @objc deinit
 }
 extension HubConnection {
   public func invoke(method: Swift.String, invocationDidComplete: @escaping (Swift.Error?) -> Swift.Void)
@@ -284,20 +165,32 @@ public protocol VideoContent : AntourageViewer.Content {
   var shareLink: Swift.String? { get }
   var viewsCount: Swift.Int { get }
 }
+public enum ModernAVPlayerLoggerDomain : Swift.CustomStringConvertible {
+  case state
+  case service
+  case error
+  case lifecycleService
+  case lifecycleState
+  case remoteCommand
+  case unavailableCommand
+  public var description: Swift.String {
+    get
+  }
+  public static func == (a: AntourageViewer.ModernAVPlayerLoggerDomain, b: AntourageViewer.ModernAVPlayerLoggerDomain) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
 public struct TransportType : Swift.OptionSet {
   public let rawValue: Swift.Int
   public init(rawValue: Swift.Int)
   public static let longPolling: AntourageViewer.TransportType
   public static let webSockets: AntourageViewer.TransportType
   public static let all: AntourageViewer.TransportType
-  public typealias Element = AntourageViewer.TransportType
   public typealias ArrayLiteralElement = AntourageViewer.TransportType
+  public typealias Element = AntourageViewer.TransportType
   public typealias RawValue = Swift.Int
-}
-public protocol HostChangeable : AnyObject {
-}
-extension HostChangeable where Self : UIKit.UIViewController {
-  public func presentChangeHostAlert()
 }
 @_hasMissingDesignatedInitializers public class WebsocketsTransport : AntourageViewer.Transport {
   weak public var delegate: AntourageViewer.TransportDelegate?
@@ -306,26 +199,20 @@ extension HostChangeable where Self : UIKit.UIViewController {
   public func close()
   @objc deinit
 }
-public class HubConnection {
-  weak public var delegate: AntourageViewer.HubConnectionDelegate?
-  public var connectionId: Swift.String? {
-    get
-  }
-  public init(connection: AntourageViewer.Connection, hubProtocol: AntourageViewer.HubProtocol, logger: AntourageViewer.Logger = NullLogger())
+public class JSONHubProtocol : AntourageViewer.HubProtocol {
+  final public let name: Swift.String
+  final public let version: Swift.Int
+  final public let type: AntourageViewer.ProtocolType
+  public init(logger: AntourageViewer.Logger, encoder: Foundation.JSONEncoder = JSONEncoder(), decoder: Foundation.JSONDecoder = JSONDecoder())
+  public func parseMessages(input: Foundation.Data) throws -> [AntourageViewer.HubMessage]
+  public func createHubMessage(payload: Foundation.Data) throws -> AntourageViewer.HubMessage
+  public func writeMessage(message: AntourageViewer.HubMessage) throws -> Foundation.Data
   @objc deinit
-  public func start()
-  public func stop()
-  public func on(method: Swift.String, callback: @escaping (AntourageViewer.ArgumentExtractor) throws -> Swift.Void)
-  public func send(method: Swift.String, arguments: [Swift.Encodable], sendDidComplete: @escaping (Swift.Error?) -> Swift.Void)
-  public func invoke(method: Swift.String, arguments: [Swift.Encodable], invocationDidComplete: @escaping (Swift.Error?) -> Swift.Void)
-  public func invoke<T>(method: Swift.String, arguments: [Swift.Encodable], resultType: T.Type, invocationDidComplete: @escaping (T?, Swift.Error?) -> Swift.Void) where T : Swift.Decodable
-  public func stream<T>(method: Swift.String, arguments: [Swift.Encodable], streamItemReceived: @escaping (T) -> Swift.Void, invocationDidComplete: @escaping (Swift.Error?) -> Swift.Void) -> AntourageViewer.StreamHandle where T : Swift.Decodable
-  public func cancelStreamInvocation(streamHandle: AntourageViewer.StreamHandle, cancelDidFail: @escaping (Swift.Error) -> Swift.Void)
 }
-@_hasMissingDesignatedInitializers public class ArgumentExtractor {
-  public func getArgument<T>(type: T.Type) throws -> T where T : Swift.Decodable
-  public func hasMoreArgs() -> Swift.Bool
-  @objc deinit
+public protocol HostChangeable : AnyObject {
+}
+extension HostChangeable where Self : UIKit.UIViewController {
+  public func presentChangeHostAlert()
 }
 extension MessageMO {
   @nonobjc public class func fetchRequest() -> CoreData.NSFetchRequest<AntourageViewer.MessageMO>
@@ -354,21 +241,32 @@ extension MessageMO {
     @objc set
   }
 }
-public protocol PlayerMedia : Swift.CustomStringConvertible {
-  var url: Foundation.URL { get }
-  var type: AntourageViewer.MediaType { get }
-  var assetOptions: [Swift.String : Any]? { get }
-  func isLive() -> Swift.Bool
-  func getMetadata() -> AntourageViewer.PlayerMediaMetadata?
-  func setMetadata(_ metadata: AntourageViewer.PlayerMediaMetadata?)
-}
-extension PlayerMedia {
-  public var description: Swift.String {
+public enum LogLevel : Swift.Int {
+  case error
+  case warning
+  case info
+  case debug
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
     get
   }
 }
-extension PlayerMedia {
-  public func isLive() -> Swift.Bool
+public protocol Logger {
+  func log(logLevel: AntourageViewer.LogLevel, message: @autoclosure () -> Swift.String)
+}
+extension LogLevel {
+  public func toString() -> Swift.String
+}
+public class PrintLogger : AntourageViewer.Logger {
+  public init()
+  public func log(logLevel: AntourageViewer.LogLevel, message: @autoclosure () -> Swift.String)
+  @objc deinit
+}
+public class NullLogger : AntourageViewer.Logger {
+  public init()
+  public func log(logLevel: AntourageViewer.LogLevel, message: @autoclosure () -> Swift.String)
+  @objc deinit
 }
 public enum ConnError : Swift.Error {
   case invalidURL
@@ -427,9 +325,20 @@ open class KeychainWrapper {
   open class func wipeKeychain()
   @objc deinit
 }
-public protocol AVPlayerRemoteCommand {
-  var reference: MPRemoteCommand { get }
-  var isEnabled: (AntourageViewer.MediaType) -> Swift.Bool { get }
+public protocol PlayerConfiguration {
+  var rateObservingTimeout: Foundation.TimeInterval { get }
+  var rateObservingTickTime: Foundation.TimeInterval { get }
+  var preferredTimescale: CoreMedia.CMTimeScale { get }
+  var periodicPlayingTime: CoreMedia.CMTime { get }
+  var audioSessionCategory: AVFAudio.AVAudioSession.Category { get }
+  var audioSessionCategoryOptions: AVFAudio.AVAudioSession.CategoryOptions? { get }
+  var reachabilityURLSessionTimeout: Foundation.TimeInterval { get }
+  var reachabilityNetworkTestingURL: Foundation.URL { get }
+  var reachabilityNetworkTestingTickTime: Foundation.TimeInterval { get }
+  var reachabilityNetworkTestingIteration: Swift.UInt { get }
+  var useDefaultRemoteCommand: Swift.Bool { get }
+  var allowsExternalPlayback: Swift.Bool { get }
+  var itemLoadedAssetKeys: [Swift.String] { get }
 }
 public enum KeychainItemAccessibility {
   @available(iOS 4, *)
@@ -447,43 +356,43 @@ public enum KeychainItemAccessibility {
   @available(iOS 4, *)
   case whenUnlockedThisDeviceOnly
   public static func == (a: AntourageViewer.KeychainItemAccessibility, b: AntourageViewer.KeychainItemAccessibility) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
     get
   }
-  public func hash(into hasher: inout Swift.Hasher)
 }
-public enum LogLevel : Swift.Int {
-  case error
-  case warning
-  case info
-  case debug
-  public typealias RawValue = Swift.Int
-  public init?(rawValue: Swift.Int)
-  public var rawValue: Swift.Int {
-    get
-  }
+public protocol PlayerMediaItem : AntourageViewer.PlayerMedia {
+  var item: AVFoundation.AVPlayerItem { get }
 }
-public protocol Logger {
-  func log(logLevel: AntourageViewer.LogLevel, message: @autoclosure () -> Swift.String)
+public enum SignalRError : Swift.Error {
+  case invalidState
+  case webError(statusCode: Swift.Int)
+  case hubInvocationError(message: Swift.String)
+  case hubInvocationCancelled
+  case unknownMessageType
+  case invalidMessage
+  case unsupportedType
+  case serializationError(underlyingError: Swift.Error)
+  case connectionIsBeingClosed
+  case invalidOperation(message: Swift.String)
+  case protocolViolation(underlyingError: Swift.Error)
+  case handshakeError(message: Swift.String)
+  case invalidNegotiationResponse(message: Swift.String)
+  case serverClose(message: Swift.String?)
+  case noSupportedTransportAvailable
+  case connectionIsReconnecting
 }
-extension LogLevel {
-  public func toString() -> Swift.String
-}
-public class PrintLogger : AntourageViewer.Logger {
-  public init()
-  public func log(logLevel: AntourageViewer.LogLevel, message: @autoclosure () -> Swift.String)
-  @objc deinit
-}
-public class NullLogger : AntourageViewer.Logger {
-  public init()
-  public func log(logLevel: AntourageViewer.LogLevel, message: @autoclosure () -> Swift.String)
-  @objc deinit
+public struct SponsoredBanner : Swift.Codable {
+  public let imageUrl: Swift.String?
+  public let externalUrl: Swift.String?
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
 }
 public enum ProtocolType : Swift.Int {
   case Text
   case Binary
-  public typealias RawValue = Swift.Int
   public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
   public var rawValue: Swift.Int {
     get
   }
@@ -503,11 +412,11 @@ public enum MessageType : Swift.Int, Swift.Codable {
   case CancelInvocation
   case Ping
   case Close
+  public init?(rawValue: Swift.Int)
   public typealias RawValue = Swift.Int
   public var rawValue: Swift.Int {
     get
   }
-  public init?(rawValue: Swift.Int)
 }
 public protocol HubMessage {
   var type: AntourageViewer.MessageType { get }
@@ -568,27 +477,6 @@ public class CompletionMessage : AntourageViewer.HubMessage, Swift.Decodable {
   final public let error: Swift.String?
   @objc deinit
   required public init(from decoder: Swift.Decoder) throws
-}
-public struct SponsoredBanner : Swift.Codable {
-  public let imageUrl: Swift.String?
-  public let externalUrl: Swift.String?
-  public init(from decoder: Swift.Decoder) throws
-  public func encode(to encoder: Swift.Encoder) throws
-}
-public struct ModernAVPlayerConfiguration : AntourageViewer.PlayerConfiguration {
-  public let rateObservingTimeout: Swift.Double
-  public let rateObservingTickTime: Swift.Double
-  public let preferredTimescale: CoreMedia.CMTimeScale
-  public let periodicPlayingTime: CoreMedia.CMTime
-  public let audioSessionCategory: AVFoundation.AVAudioSession.Category
-  public let reachabilityURLSessionTimeout: Swift.Double
-  public let reachabilityNetworkTestingURL: Foundation.URL
-  public let reachabilityNetworkTestingTickTime: Swift.Double
-  public let reachabilityNetworkTestingIteration: Swift.UInt
-  public var useDefaultRemoteCommand: Swift.Bool
-  public let allowsExternalPlayback: Swift.Bool
-  public let itemLoadedAssetKeys: [Swift.String]
-  public init()
 }
 @_hasMissingDesignatedInitializers public class StorageManager {
   public static var shared: AntourageViewer.StorageManager
@@ -656,8 +544,8 @@ public enum ContentType : Swift.String, Swift.Codable {
   case vod
   case live
   case post
-  public typealias RawValue = Swift.String
   public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
   public var rawValue: Swift.String {
     get
   }
@@ -689,15 +577,6 @@ extension PollMO {
   @objc override dynamic public init(entity: CoreData.NSEntityDescription, insertInto context: CoreData.NSManagedObjectContext?)
   @objc deinit
 }
-public protocol Transport : AnyObject {
-  var delegate: AntourageViewer.TransportDelegate? { get set }
-  func start(url: Foundation.URL, options: AntourageViewer.HttpConnectionOptions)
-  func send(data: Foundation.Data, sendDidComplete: @escaping (Swift.Error?) -> Swift.Void)
-  func close()
-}
-public protocol PlayerMediaItem : AntourageViewer.PlayerMedia {
-  var item: AVFoundation.AVPlayerItem { get }
-}
 public protocol HubConnectionDelegate : AnyObject {
   func connectionDidOpen(hubConnection: AntourageViewer.HubConnection)
   func connectionDidFailToOpen(error: Swift.Error)
@@ -709,52 +588,61 @@ extension HubConnectionDelegate {
   public func connectionWillReconnect(error: Swift.Error)
   public func connectionDidReconnect()
 }
-public struct RetryContext {
-  public let failedAttemptsCount: Swift.Int
-  public let reconnectStartTime: Foundation.Date
-  public let error: Swift.Error
+public enum PlayerUnavailableActionReason {
+  case alreadyPaused
+  case alreadyPlaying
+  case alreadyStopped
+  case alreadyTryingToPlay
+  case seekPositionNotAvailable
+  case loadMediaFirst
+  case seekOverstepPosition
+  case waitEstablishedNetwork
+  case waitLoadedMedia
+  public static func == (a: AntourageViewer.PlayerUnavailableActionReason, b: AntourageViewer.PlayerUnavailableActionReason) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
 }
-public protocol ReconnectPolicy {
-  func nextAttemptInterval(retryContext: AntourageViewer.RetryContext) -> Dispatch.DispatchTimeInterval
+@_hasMissingDesignatedInitializers public class HttpConnection : AntourageViewer.Connection {
+  weak public var delegate: AntourageViewer.ConnectionDelegate?
+  public var connectionId: Swift.String? {
+    get
+  }
+  convenience public init(url: Foundation.URL, options: AntourageViewer.HttpConnectionOptions = HttpConnectionOptions(), logger: AntourageViewer.Logger = NullLogger())
+  @objc deinit
+  public func start()
+  public func send(data: Foundation.Data, sendDidComplete: @escaping (Swift.Error?) -> Swift.Void)
+  public func stop(stopError: Swift.Error? = nil)
 }
-public class DefaultReconnectPolicy : AntourageViewer.ReconnectPolicy {
-  public init(retryIntervals: [Dispatch.DispatchTimeInterval] = [.milliseconds(0), .seconds(2), .seconds(10), .seconds(30)])
-  public func nextAttemptInterval(retryContext: AntourageViewer.RetryContext) -> Dispatch.DispatchTimeInterval
+@_hasMissingDesignatedInitializers public class ConnectionTransportDelegate : AntourageViewer.TransportDelegate {
+  public func transportDidOpen()
+  public func transportDidReceiveData(_ data: Foundation.Data)
+  public func transportDidClose(_ error: Swift.Error?)
   @objc deinit
 }
-public protocol PlayerPlugin {
-  func didInit(player: AVFoundation.AVPlayer)
-  func willStartLoading(media: AntourageViewer.PlayerMedia)
-  func didStartLoading(media: AntourageViewer.PlayerMedia)
-  func didStartBuffering(media: AntourageViewer.PlayerMedia)
-  func didLoad(media: AntourageViewer.PlayerMedia, duration: Swift.Double?)
-  func didMediaChanged(_ media: AntourageViewer.PlayerMedia, previousMedia: AntourageViewer.PlayerMedia?)
-  func willStartPlaying(media: AntourageViewer.PlayerMedia, position: Swift.Double)
-  func didStartPlaying(media: AntourageViewer.PlayerMedia)
-  func didPaused(media: AntourageViewer.PlayerMedia?, position: Swift.Double)
-  func didStopped(media: AntourageViewer.PlayerMedia?, position: Swift.Double)
-  func didStartWaitingForNetwork(media: AntourageViewer.PlayerMedia)
-  func didFailed(media: AntourageViewer.PlayerMedia, error: AntourageViewer.PlayerError)
-  func didItemPlayToEndTime(media: AntourageViewer.PlayerMedia, endTime: Swift.Double)
+public protocol Transport : AnyObject {
+  var delegate: AntourageViewer.TransportDelegate? { get set }
+  func start(url: Foundation.URL, options: AntourageViewer.HttpConnectionOptions)
+  func send(data: Foundation.Data, sendDidComplete: @escaping (Swift.Error?) -> Swift.Void)
+  func close()
 }
-extension PlayerPlugin {
-  public func didInit(player: AVFoundation.AVPlayer)
-  public func willStartLoading(media: AntourageViewer.PlayerMedia)
-  public func didStartLoading(media: AntourageViewer.PlayerMedia)
-  public func didStartBuffering(media: AntourageViewer.PlayerMedia)
-  public func didLoad(media: AntourageViewer.PlayerMedia, duration: Swift.Double?)
-  public func didMediaChanged(_ media: AntourageViewer.PlayerMedia, previousMedia: AntourageViewer.PlayerMedia?)
-  public func willStartPlaying(media: AntourageViewer.PlayerMedia, position: Swift.Double)
-  public func didStartPlaying(media: AntourageViewer.PlayerMedia)
-  public func didPaused(media: AntourageViewer.PlayerMedia?, position: Swift.Double)
-  public func didStopped(media: AntourageViewer.PlayerMedia?, position: Swift.Double)
-  public func didStartWaitingForNetwork(media: AntourageViewer.PlayerMedia)
-  public func didFailed(media: AntourageViewer.PlayerMedia, error: AntourageViewer.PlayerError)
-  public func didItemPlayToEndTime(media: AntourageViewer.PlayerMedia, endTime: Swift.Double)
+public protocol Connection {
+  var delegate: AntourageViewer.ConnectionDelegate? { get set }
+  var connectionId: Swift.String? { get }
+  func start()
+  func send(data: Foundation.Data, sendDidComplete: @escaping (Swift.Error?) -> Swift.Void)
+  func stop(stopError: Swift.Error?)
 }
 public protocol FirebaseFetcher {
   func setLatestMessages(VODs: [AntourageViewer.Content], completion: @escaping (() -> ()))
   func setInfo(lives: [AntourageViewer.Live], completion: @escaping (() -> ()))
+}
+public struct ModernAVPlayerRemoteCommand : AntourageViewer.AVPlayerRemoteCommand, Swift.CustomDebugStringConvertible {
+  public let reference: MPRemoteCommand
+  public let isEnabled: (AntourageViewer.MediaType) -> Swift.Bool
+  public let debugDescription: Swift.String
+  public init(reference: MPRemoteCommand, debugDescription: Swift.String? = nil, isEnabled: @escaping (AntourageViewer.MediaType) -> Swift.Bool)
 }
 extension KeychainWrapper {
   public func remove(forKey key: AntourageViewer.KeychainWrapper.Key)
@@ -803,19 +691,43 @@ extension KeychainWrapper {
     public var rawValue: Swift.String
     public init(rawValue: Swift.String)
     public init(stringLiteral value: Swift.String)
-    public typealias StringLiteralType = Swift.String
     public typealias ExtendedGraphemeClusterLiteralType = Swift.String
-    public typealias UnicodeScalarLiteralType = Swift.String
     public typealias RawValue = Swift.String
+    public typealias StringLiteralType = Swift.String
+    public typealias UnicodeScalarLiteralType = Swift.String
   }
 }
-public protocol MediaPlayer : AnyObject, AntourageViewer.PlayerCommand {
-  var currentMedia: AntourageViewer.PlayerMedia? { get }
-  var currentTime: Swift.Double { get }
-  var loopMode: Swift.Bool { get set }
-  var player: AVFoundation.AVPlayer { get }
-  var remoteCommands: [AntourageViewer.ModernAVPlayerRemoteCommand]? { get }
-  func updateMetadata(_ metadata: AntourageViewer.PlayerMediaMetadata?)
+public struct ModernAVPlayerConfiguration : AntourageViewer.PlayerConfiguration {
+  public let rateObservingTimeout: Swift.Double
+  public let rateObservingTickTime: Swift.Double
+  public let preferredTimescale: CoreMedia.CMTimeScale
+  public let periodicPlayingTime: CoreMedia.CMTime
+  public let audioSessionCategory: AVFAudio.AVAudioSession.Category
+  public let audioSessionCategoryOptions: AVFAudio.AVAudioSession.CategoryOptions?
+  public let reachabilityURLSessionTimeout: Swift.Double
+  public let reachabilityNetworkTestingURL: Foundation.URL
+  public let reachabilityNetworkTestingTickTime: Swift.Double
+  public let reachabilityNetworkTestingIteration: Swift.UInt
+  public var useDefaultRemoteCommand: Swift.Bool
+  public let allowsExternalPlayback: Swift.Bool
+  public let itemLoadedAssetKeys: [Swift.String]
+  public init()
+}
+public typealias ModernAVPlayerExposable = AntourageViewer.MediaPlayer & AntourageViewer.ModernAVPlayerCurrentState
+public enum PlayerError : Swift.Error {
+  case loadingFailed
+  case playbackStalled
+  case bufferingFailed
+  public static func == (a: AntourageViewer.PlayerError, b: AntourageViewer.PlayerError) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public protocol TransportDelegate : AnyObject {
+  func transportDidOpen()
+  func transportDidReceiveData(_ data: Foundation.Data)
+  func transportDidClose(_ error: Swift.Error?)
 }
 public protocol Chat {
   var onAdd: ((AntourageViewer.Message) -> ())? { get set }
@@ -826,24 +738,15 @@ public protocol Chat {
 public enum WidgetLocale : Swift.String {
   case english
   case swedish
-  public typealias RawValue = Swift.String
   public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
   public var rawValue: Swift.String {
     get
   }
 }
-public class ModernAVPlayerMedia : AntourageViewer.PlayerMedia {
-  final public let url: Foundation.URL
-  final public let type: AntourageViewer.MediaType
-  final public let assetOptions: [Swift.String : Any]?
-  public init(url: Foundation.URL, type: AntourageViewer.MediaType, metadata: AntourageViewer.ModernAVPlayerMediaMetadata? = nil, assetOptions: [Swift.String : Any]? = nil)
-  public func getMetadata() -> AntourageViewer.PlayerMediaMetadata?
-  public func setMetadata(_ metadata: AntourageViewer.PlayerMediaMetadata?)
-  @objc deinit
-}
 @_inheritsConvenienceInitializers @objc(PollMO) public class PollMO : CoreData.NSManagedObject {
-  @objc deinit
   @objc override dynamic public init(entity: CoreData.NSEntityDescription, insertInto context: CoreData.NSManagedObjectContext?)
+  @objc deinit
 }
 public struct Message {
   public var key: Swift.String
@@ -856,66 +759,35 @@ public struct Message {
   public init?(data: [Swift.String : Any], docID: Swift.String, date: Foundation.Date?)
   public func toAnyObject() -> [Swift.String : Any]
 }
-public enum PlayerError : Swift.Error {
-  case loadingFailed
-  case playbackStalled
-  case bufferingFailed
-  public static func == (a: AntourageViewer.PlayerError, b: AntourageViewer.PlayerError) -> Swift.Bool
-  public var hashValue: Swift.Int {
+public protocol ModernAVPlayerCurrentState : AnyObject {
+  var state: AntourageViewer.ModernAVPlayer.State { get }
+}
+public class HubConnection {
+  weak public var delegate: AntourageViewer.HubConnectionDelegate?
+  public var connectionId: Swift.String? {
     get
   }
-  public func hash(into hasher: inout Swift.Hasher)
-}
-public class HttpConnectionOptions {
-  public var headers: [Swift.String : Swift.String]
-  public var accessTokenProvider: () -> Swift.String?
-  public var httpClientFactory: (AntourageViewer.HttpConnectionOptions) -> AntourageViewer.HttpClientProtocol
-  public var skipNegotiation: Swift.Bool
-  public var requestTimeout: Swift.Double
-  public init()
+  public init(connection: AntourageViewer.Connection, hubProtocol: AntourageViewer.HubProtocol, logger: AntourageViewer.Logger = NullLogger())
   @objc deinit
+  public func start()
+  public func stop()
+  public func on(method: Swift.String, callback: @escaping (AntourageViewer.ArgumentExtractor) throws -> Swift.Void)
+  public func send(method: Swift.String, arguments: [Swift.Encodable], sendDidComplete: @escaping (Swift.Error?) -> Swift.Void)
+  public func invoke(method: Swift.String, arguments: [Swift.Encodable], invocationDidComplete: @escaping (Swift.Error?) -> Swift.Void)
+  public func invoke<T>(method: Swift.String, arguments: [Swift.Encodable], resultType: T.Type, invocationDidComplete: @escaping (T?, Swift.Error?) -> Swift.Void) where T : Swift.Decodable
+  public func stream<T>(method: Swift.String, arguments: [Swift.Encodable], streamItemReceived: @escaping (T) -> Swift.Void, invocationDidComplete: @escaping (Swift.Error?) -> Swift.Void) -> AntourageViewer.StreamHandle where T : Swift.Decodable
+  public func cancelStreamInvocation(streamHandle: AntourageViewer.StreamHandle, cancelDidFail: @escaping (Swift.Error) -> Swift.Void)
 }
-public class ModernAVPlayerRemoteCommandFactory {
-  public var defaultCommands: [AntourageViewer.ModernAVPlayerRemoteCommand] {
-    get
-  }
-  public init(player: AntourageViewer.ModernAVPlayerExposable, commandCenter: MPRemoteCommandCenter = MPRemoteCommandCenter.shared())
-  public var playCommand: AntourageViewer.ModernAVPlayerRemoteCommand {
-    get
-    set
-  }
-  public var togglePlayPauseCommand: AntourageViewer.ModernAVPlayerRemoteCommand {
-    get
-    set
-  }
-  public var pauseCommand: AntourageViewer.ModernAVPlayerRemoteCommand {
-    get
-    set
-  }
-  public var stopCommand: AntourageViewer.ModernAVPlayerRemoteCommand {
-    get
-    set
-  }
-  public var changePositionCommand: AntourageViewer.ModernAVPlayerRemoteCommand {
-    get
-    set
-  }
-  public func skipBackwardCommand(preferredIntervals: [Foundation.NSNumber] = [10]) -> AntourageViewer.ModernAVPlayerRemoteCommand
-  public func skipForwardCommand(preferredIntervals: [Foundation.NSNumber] = [10]) -> AntourageViewer.ModernAVPlayerRemoteCommand
-  @objc deinit
-}
-@_hasMissingDesignatedInitializers public class LongPollingTransport : AntourageViewer.Transport {
-  public var delegate: AntourageViewer.TransportDelegate?
-  public func start(url: Foundation.URL, options: AntourageViewer.HttpConnectionOptions)
-  public func send(data: Foundation.Data, sendDidComplete: @escaping (Swift.Error?) -> Swift.Void)
-  public func close()
+@_hasMissingDesignatedInitializers public class ArgumentExtractor {
+  public func getArgument<T>(type: T.Type) throws -> T where T : Swift.Decodable
+  public func hasMoreArgs() -> Swift.Bool
   @objc deinit
 }
 public struct UploadImageResponse : Swift.Codable {
   public let success: Swift.Bool
   public let imageUrl: Swift.String?
-  public init(from decoder: Swift.Decoder) throws
   public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
 }
 public enum HTTPMethod : Swift.String {
   case get
@@ -923,60 +795,82 @@ public enum HTTPMethod : Swift.String {
   case put
   case delete
   case patch
+  public init?(rawValue: Swift.String)
   public typealias RawValue = Swift.String
   public var rawValue: Swift.String {
     get
   }
-  public init?(rawValue: Swift.String)
 }
 public struct RequestData {
 }
-public protocol PlayerCommand {
-  func load(media: AntourageViewer.PlayerMedia, autostart: Swift.Bool, position: Swift.Double?)
-  func pause()
-  func play()
-  func seek(position: Swift.Double)
-  func stop()
-}
-public protocol PlayerConfiguration {
-  var rateObservingTimeout: Foundation.TimeInterval { get }
-  var rateObservingTickTime: Foundation.TimeInterval { get }
-  var preferredTimescale: CoreMedia.CMTimeScale { get }
-  var periodicPlayingTime: CoreMedia.CMTime { get }
-  var audioSessionCategory: AVFoundation.AVAudioSession.Category { get }
-  var reachabilityURLSessionTimeout: Foundation.TimeInterval { get }
-  var reachabilityNetworkTestingURL: Foundation.URL { get }
-  var reachabilityNetworkTestingTickTime: Foundation.TimeInterval { get }
-  var reachabilityNetworkTestingIteration: Swift.UInt { get }
-  var useDefaultRemoteCommand: Swift.Bool { get }
-  var allowsExternalPlayback: Swift.Bool { get }
-  var itemLoadedAssetKeys: [Swift.String] { get }
-}
-public enum PlayerUnavailableActionReason {
-  case alreadyPaused
-  case alreadyPlaying
-  case alreadyStopped
-  case alreadyTryingToPlay
-  case seekPositionNotAvailable
-  case loadMediaFirst
-  case seekOverstepPosition
-  case waitEstablishedNetwork
-  case waitLoadedMedia
-  public static func == (a: AntourageViewer.PlayerUnavailableActionReason, b: AntourageViewer.PlayerUnavailableActionReason) -> Swift.Bool
-  public var hashValue: Swift.Int {
+public enum TransferFormat : Swift.String {
+  case text
+  case binary
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
     get
   }
-  public func hash(into hasher: inout Swift.Hasher)
 }
-public typealias ModernAVPlayerExposable = AntourageViewer.MediaPlayer & AntourageViewer.ModernAVPlayerCurrentState
+public struct ModernAVPlayerMediaMetadata : AntourageViewer.PlayerMediaMetadata, Swift.Equatable {
+  public let title: Swift.String?
+  public let albumTitle: Swift.String?
+  public let artist: Swift.String?
+  public let image: Foundation.Data?
+  public let remoteImageUrl: Foundation.URL?
+  public init(title: Swift.String? = nil, albumTitle: Swift.String? = nil, artist: Swift.String? = nil, image: Foundation.Data? = nil, remoteImageUrl: Foundation.URL? = nil)
+  public static func == (a: AntourageViewer.ModernAVPlayerMediaMetadata, b: AntourageViewer.ModernAVPlayerMediaMetadata) -> Swift.Bool
+}
+@_hasMissingDesignatedInitializers public class StreamHandle {
+  @objc deinit
+}
+public class ModernAVPlayerMedia : AntourageViewer.PlayerMedia {
+  final public let url: Foundation.URL
+  final public let type: AntourageViewer.MediaType
+  final public let assetOptions: [Swift.String : Any]?
+  public init(url: Foundation.URL, type: AntourageViewer.MediaType, metadata: AntourageViewer.ModernAVPlayerMediaMetadata? = nil, assetOptions: [Swift.String : Any]? = nil)
+  public func getMetadata() -> AntourageViewer.PlayerMediaMetadata?
+  public func setMetadata(_ metadata: AntourageViewer.PlayerMediaMetadata?)
+  @objc deinit
+}
+public protocol PlayerPlugin {
+  func didInit(player: AVFoundation.AVPlayer)
+  func willStartLoading(media: AntourageViewer.PlayerMedia)
+  func didStartLoading(media: AntourageViewer.PlayerMedia)
+  func didStartBuffering(media: AntourageViewer.PlayerMedia)
+  func didLoad(media: AntourageViewer.PlayerMedia, duration: Swift.Double?)
+  func didMediaChanged(_ media: AntourageViewer.PlayerMedia, previousMedia: AntourageViewer.PlayerMedia?)
+  func willStartPlaying(media: AntourageViewer.PlayerMedia, position: Swift.Double)
+  func didStartPlaying(media: AntourageViewer.PlayerMedia)
+  func didPaused(media: AntourageViewer.PlayerMedia?, position: Swift.Double)
+  func didStopped(media: AntourageViewer.PlayerMedia?, position: Swift.Double)
+  func didStartWaitingForNetwork(media: AntourageViewer.PlayerMedia)
+  func didFailed(media: AntourageViewer.PlayerMedia, error: AntourageViewer.PlayerError)
+  func didItemPlayToEndTime(media: AntourageViewer.PlayerMedia, endTime: Swift.Double)
+}
+extension PlayerPlugin {
+  public func didInit(player: AVFoundation.AVPlayer)
+  public func willStartLoading(media: AntourageViewer.PlayerMedia)
+  public func didStartLoading(media: AntourageViewer.PlayerMedia)
+  public func didStartBuffering(media: AntourageViewer.PlayerMedia)
+  public func didLoad(media: AntourageViewer.PlayerMedia, duration: Swift.Double?)
+  public func didMediaChanged(_ media: AntourageViewer.PlayerMedia, previousMedia: AntourageViewer.PlayerMedia?)
+  public func willStartPlaying(media: AntourageViewer.PlayerMedia, position: Swift.Double)
+  public func didStartPlaying(media: AntourageViewer.PlayerMedia)
+  public func didPaused(media: AntourageViewer.PlayerMedia?, position: Swift.Double)
+  public func didStopped(media: AntourageViewer.PlayerMedia?, position: Swift.Double)
+  public func didStartWaitingForNetwork(media: AntourageViewer.PlayerMedia)
+  public func didFailed(media: AntourageViewer.PlayerMedia, error: AntourageViewer.PlayerError)
+  public func didItemPlayToEndTime(media: AntourageViewer.PlayerMedia, endTime: Swift.Double)
+}
 @objc @_inheritsConvenienceInitializers @IBDesignable public class GradientView : UIKit.UIView {
   @objc override dynamic public class var layerClass: Swift.AnyClass {
     @objc get
   }
   @objc override dynamic public func layoutSubviews()
-  @objc deinit
   @objc override dynamic public init(frame: CoreGraphics.CGRect)
   @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
 }
 public enum ReachabilityError : Swift.Error {
   case failedToCreateWithAddress(Darwin.sockaddr, Swift.Int32)
@@ -1000,10 +894,10 @@ public class Reachability {
       get
     }
     public static func == (a: AntourageViewer.Reachability.NetworkStatus, b: AntourageViewer.Reachability.NetworkStatus) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
     public var hashValue: Swift.Int {
       get
     }
-    public func hash(into hasher: inout Swift.Hasher)
   }
   public enum Connection : Swift.CustomStringConvertible {
     case unavailable, wifi, cellular
@@ -1013,10 +907,10 @@ public class Reachability {
     @available(*, deprecated, renamed: "unavailable")
     public static let none: AntourageViewer.Reachability.Connection
     public static func == (a: AntourageViewer.Reachability.Connection, b: AntourageViewer.Reachability.Connection) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
     public var hashValue: Swift.Int {
       get
     }
-    public func hash(into hasher: inout Swift.Hasher)
   }
   public var whenReachable: AntourageViewer.Reachability.NetworkReachable?
   public var whenUnreachable: AntourageViewer.Reachability.NetworkUnreachable?
@@ -1059,23 +953,57 @@ extension Reachability {
     get
   }
 }
-public enum SignalRError : Swift.Error {
-  case invalidState
-  case webError(statusCode: Swift.Int)
-  case hubInvocationError(message: Swift.String)
-  case hubInvocationCancelled
-  case unknownMessageType
-  case invalidMessage
-  case unsupportedType
-  case serializationError(underlyingError: Swift.Error)
-  case connectionIsBeingClosed
-  case invalidOperation(message: Swift.String)
-  case protocolViolation(underlyingError: Swift.Error)
-  case handshakeError(message: Swift.String)
-  case invalidNegotiationResponse(message: Swift.String)
-  case serverClose(message: Swift.String?)
-  case noSupportedTransportAvailable
-  case connectionIsReconnecting
+public protocol ModernAVPlayerDelegate : AnyObject {
+  func modernAVPlayer(_ player: AntourageViewer.ModernAVPlayer, didStateChange state: AntourageViewer.ModernAVPlayer.State)
+  func modernAVPlayer(_ player: AntourageViewer.ModernAVPlayer, didCurrentMediaChange media: AntourageViewer.PlayerMedia?)
+  func modernAVPlayer(_ player: AntourageViewer.ModernAVPlayer, didCurrentTimeChange currentTime: Swift.Double)
+  func modernAVPlayer(_ player: AntourageViewer.ModernAVPlayer, didItemDurationChange itemDuration: Swift.Double?)
+  func modernAVPlayer(_ player: AntourageViewer.ModernAVPlayer, unavailableActionReason: AntourageViewer.PlayerUnavailableActionReason)
+  func modernAVPlayer(_ player: AntourageViewer.ModernAVPlayer, didItemPlayToEndTime endTime: Swift.Double)
+}
+extension ModernAVPlayerDelegate {
+  public func modernAVPlayer(_ player: AntourageViewer.ModernAVPlayer, didStateChange state: AntourageViewer.ModernAVPlayer.State)
+  public func modernAVPlayer(_ player: AntourageViewer.ModernAVPlayer, didCurrentMediaChange media: AntourageViewer.PlayerMedia?)
+  public func modernAVPlayer(_ player: AntourageViewer.ModernAVPlayer, didCurrentTimeChange currentTime: Swift.Double)
+  public func modernAVPlayer(_ player: AntourageViewer.ModernAVPlayer, didItemDurationChange itemDuration: Swift.Double?)
+  public func modernAVPlayer(_ player: AntourageViewer.ModernAVPlayer, unavailableActionReason: AntourageViewer.PlayerUnavailableActionReason)
+  public func modernAVPlayer(_ player: AntourageViewer.ModernAVPlayer, didItemPlayToEndTime endTime: Swift.Double)
+}
+public protocol PlayerCommand {
+  func load(media: AntourageViewer.PlayerMedia, autostart: Swift.Bool, position: Swift.Double?)
+  func pause()
+  func play()
+  func seek(position: Swift.Double)
+  func stop()
+}
+public class ModernAVPlayerRemoteCommandFactory {
+  public var defaultCommands: [AntourageViewer.ModernAVPlayerRemoteCommand] {
+    get
+  }
+  public init(player: AntourageViewer.ModernAVPlayerExposable, commandCenter: MPRemoteCommandCenter = MPRemoteCommandCenter.shared())
+  public var playCommand: AntourageViewer.ModernAVPlayerRemoteCommand {
+    get
+    set
+  }
+  public var togglePlayPauseCommand: AntourageViewer.ModernAVPlayerRemoteCommand {
+    get
+    set
+  }
+  public var pauseCommand: AntourageViewer.ModernAVPlayerRemoteCommand {
+    get
+    set
+  }
+  public var stopCommand: AntourageViewer.ModernAVPlayerRemoteCommand {
+    get
+    set
+  }
+  public var changePositionCommand: AntourageViewer.ModernAVPlayerRemoteCommand {
+    get
+    set
+  }
+  public func skipBackwardCommand(preferredIntervals: [Foundation.NSNumber] = [10]) -> AntourageViewer.ModernAVPlayerRemoteCommand
+  public func skipForwardCommand(preferredIntervals: [Foundation.NSNumber] = [10]) -> AntourageViewer.ModernAVPlayerRemoteCommand
+  @objc deinit
 }
 public protocol Poll {
   var key: Swift.String { get set }
@@ -1085,24 +1013,8 @@ public protocol Poll {
   var answersCount: [Swift.Int] { get set }
   var onUpdate: (() -> ())? { get set }
   var percentForEachAnswer: [Swift.Int] { get set }
-  func saveAnswer(index: Swift.Int, deviceID: Swift.String)
-}
-public enum ModernAVPlayerLoggerDomain : Swift.CustomStringConvertible {
-  case state
-  case service
-  case error
-  case lifecycleService
-  case lifecycleState
-  case remoteCommand
-  case unavailableCommand
-  public var description: Swift.String {
-    get
-  }
-  public static func == (a: AntourageViewer.ModernAVPlayerLoggerDomain, b: AntourageViewer.ModernAVPlayerLoggerDomain) -> Swift.Bool
-  public var hashValue: Swift.Int {
-    get
-  }
-  public func hash(into hasher: inout Swift.Hasher)
+  func updateUserID(_ userID: Swift.String?)
+  func saveAnswer(index: Swift.Int, userID: Swift.String)
 }
 @objc @_inheritsConvenienceInitializers open class IQTextView : UIKit.UITextView {
   @objc required dynamic public init?(coder aDecoder: Foundation.NSCoder)
@@ -1146,10 +1058,41 @@ public enum ModernAVPlayerLoggerDomain : Swift.CustomStringConvertible {
     @objc get
   }
 }
-public protocol TransportDelegate : AnyObject {
-  func transportDidOpen()
-  func transportDidReceiveData(_ data: Foundation.Data)
-  func transportDidClose(_ error: Swift.Error?)
+public class HttpConnectionOptions {
+  public var headers: [Swift.String : Swift.String]
+  public var accessTokenProvider: () -> Swift.String?
+  public var httpClientFactory: (AntourageViewer.HttpConnectionOptions) -> AntourageViewer.HttpClientProtocol
+  public var skipNegotiation: Swift.Bool
+  public var requestTimeout: Swift.Double
+  public init()
+  @objc deinit
+}
+public protocol AVPlayerRemoteCommand {
+  var reference: MPRemoteCommand { get }
+  var isEnabled: (AntourageViewer.MediaType) -> Swift.Bool { get }
+}
+public struct AntourageAVPlayerConfiguration : AntourageViewer.PlayerConfiguration {
+  public let rateObservingTimeout: Swift.Double
+  public let rateObservingTickTime: Swift.Double
+  public let preferredTimescale: CoreMedia.CMTimeScale
+  public let periodicPlayingTime: CoreMedia.CMTime
+  public let audioSessionCategory: AVFAudio.AVAudioSession.Category
+  public let audioSessionCategoryOptions: AVFAudio.AVAudioSession.CategoryOptions?
+  public let reachabilityURLSessionTimeout: Swift.Double
+  public let reachabilityNetworkTestingURL: Foundation.URL
+  public let reachabilityNetworkTestingTickTime: Swift.Double
+  public let reachabilityNetworkTestingIteration: Swift.UInt
+  public var useDefaultRemoteCommand: Swift.Bool
+  public let allowsExternalPlayback: Swift.Bool
+  public let itemLoadedAssetKeys: [Swift.String]
+  public init()
+}
+@_hasMissingDesignatedInitializers public class LongPollingTransport : AntourageViewer.Transport {
+  public var delegate: AntourageViewer.TransportDelegate?
+  public func start(url: Foundation.URL, options: AntourageViewer.HttpConnectionOptions)
+  public func send(data: Foundation.Data, sendDidComplete: @escaping (Swift.Error?) -> Swift.Void)
+  public func close()
+  @objc deinit
 }
 public protocol ConnectionDelegate : AnyObject {
   func connectionDidOpen(connection: AntourageViewer.Connection)
@@ -1162,45 +1105,6 @@ public protocol ConnectionDelegate : AnyObject {
 extension ConnectionDelegate {
   public func connectionWillReconnect(error: Swift.Error)
   public func connectionDidReconnect()
-}
-@_hasMissingDesignatedInitializers public class HttpResponse {
-  @objc deinit
-}
-public protocol ModernAVPlayerCurrentState : AnyObject {
-  var state: AntourageViewer.ModernAVPlayer.State { get }
-}
-public struct AntourageAVPlayerConfiguration : AntourageViewer.PlayerConfiguration {
-  public let rateObservingTimeout: Swift.Double
-  public let rateObservingTickTime: Swift.Double
-  public let preferredTimescale: CoreMedia.CMTimeScale
-  public let periodicPlayingTime: CoreMedia.CMTime
-  public let audioSessionCategory: AVFoundation.AVAudioSession.Category
-  public let reachabilityURLSessionTimeout: Swift.Double
-  public let reachabilityNetworkTestingURL: Foundation.URL
-  public let reachabilityNetworkTestingTickTime: Swift.Double
-  public let reachabilityNetworkTestingIteration: Swift.UInt
-  public var useDefaultRemoteCommand: Swift.Bool
-  public let allowsExternalPlayback: Swift.Bool
-  public let itemLoadedAssetKeys: [Swift.String]
-  public init()
-}
-public protocol PlayerMediaMetadata : Swift.CustomStringConvertible {
-  var title: Swift.String? { get }
-  var artist: Swift.String? { get }
-  var albumTitle: Swift.String? { get }
-  var image: Foundation.Data? { get }
-  var remoteImageUrl: Foundation.URL? { get }
-}
-extension PlayerMediaMetadata {
-  public var description: Swift.String {
-    get
-  }
-}
-public struct ModernAVPlayerRemoteCommand : AntourageViewer.AVPlayerRemoteCommand, Swift.CustomDebugStringConvertible {
-  public let reference: MPRemoteCommand
-  public let isEnabled: (AntourageViewer.MediaType) -> Swift.Bool
-  public let debugDescription: Swift.String
-  public init(reference: MPRemoteCommand, debugDescription: Swift.String? = nil, isEnabled: @escaping (AntourageViewer.MediaType) -> Swift.Bool)
 }
 @_hasMissingDesignatedInitializers final public class VOD : AntourageViewer.VideoContent {
   final public var viewsCount: Swift.Int
@@ -1227,12 +1131,85 @@ public struct ModernAVPlayerRemoteCommand : AntourageViewer.AVPlayerRemoteComman
   final public var shareLink: Swift.String?
   @objc deinit
 }
+public protocol PlayerMedia : Swift.CustomStringConvertible {
+  var url: Foundation.URL { get }
+  var type: AntourageViewer.MediaType { get }
+  var assetOptions: [Swift.String : Any]? { get }
+  func isLive() -> Swift.Bool
+  func getMetadata() -> AntourageViewer.PlayerMediaMetadata?
+  func setMetadata(_ metadata: AntourageViewer.PlayerMediaMetadata?)
+}
+extension PlayerMedia {
+  public var description: Swift.String {
+    get
+  }
+}
+extension PlayerMedia {
+  public func isLive() -> Swift.Bool
+}
+@_hasMissingDesignatedInitializers public class HttpResponse {
+  @objc deinit
+}
 @objc @_inheritsConvenienceInitializers public class FooterView : UIKit.UICollectionReusableView {
   @objc override dynamic public func awakeFromNib()
   @objc override dynamic public func layoutSubviews()
-  @objc deinit
   @objc override dynamic public init(frame: CoreGraphics.CGRect)
   @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@objc final public class ModernAVPlayer : ObjectiveC.NSObject, AntourageViewer.ModernAVPlayerExposable {
+  weak final public var delegate: AntourageViewer.ModernAVPlayerDelegate?
+  final public var player: AVFoundation.AVPlayer {
+    get
+  }
+  final public var state: AntourageViewer.ModernAVPlayer.State {
+    get
+  }
+  final public var currentMedia: AntourageViewer.PlayerMedia? {
+    get
+  }
+  final public var currentTime: Swift.Double {
+    get
+  }
+  final public var loopMode: Swift.Bool {
+    get
+    set
+  }
+  final public var remoteCommands: [AntourageViewer.ModernAVPlayerRemoteCommand]? {
+    get
+    set
+  }
+  public init(player: AVFoundation.AVPlayer = AVPlayer(), config: AntourageViewer.PlayerConfiguration = ModernAVPlayerConfiguration(), plugins: [AntourageViewer.PlayerPlugin] = [], loggerDomains: [AntourageViewer.ModernAVPlayerLoggerDomain] = [])
+  final public func pause()
+  final public func seek(position: Swift.Double)
+  final public func seek(offset: Swift.Double)
+  final public func stop()
+  final public func load(media: AntourageViewer.PlayerMedia, autostart: Swift.Bool, position: Swift.Double? = nil)
+  final public func updateMetadata(_ metadata: AntourageViewer.PlayerMediaMetadata?)
+  final public func play()
+  @objc override dynamic public init()
+  @objc deinit
+}
+extension ModernAVPlayer {
+  public enum State : Swift.String, Swift.CustomStringConvertible {
+    case buffering
+    case failed
+    case initialization
+    case loaded
+    case loading
+    case paused
+    case playing
+    case stopped
+    case waitingForNetwork
+    public var description: Swift.String {
+      get
+    }
+    public init?(rawValue: Swift.String)
+    public typealias RawValue = Swift.String
+    public var rawValue: Swift.String {
+      get
+    }
+  }
 }
 public protocol FirebaseCreator {
   func createPollManager(streamId: Swift.Int, path: Swift.String) -> AntourageViewer.PollManager
@@ -1261,18 +1238,6 @@ public struct BadgeAppearance {
   public var size: CoreGraphics.CGSize?
   public init()
 }
-public enum TransferFormat : Swift.String {
-  case text
-  case binary
-  public typealias RawValue = Swift.String
-  public init?(rawValue: Swift.String)
-  public var rawValue: Swift.String {
-    get
-  }
-}
-@_hasMissingDesignatedInitializers public class StreamHandle {
-  @objc deinit
-}
 final public class Live : AntourageViewer.VideoContent, Swift.Codable {
   final public var id: Swift.Int
   final public var title: Swift.String
@@ -1293,28 +1258,21 @@ final public class Live : AntourageViewer.VideoContent, Swift.Codable {
   final public var viewsCount: Swift.Int
   final public var broadcasterPicUrl: Swift.String?
   @objc deinit
-  public init(from decoder: Swift.Decoder) throws
   final public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
 }
-public enum MediaType {
-  case clip
-  case stream(isLive: Swift.Bool)
+public protocol HttpClientProtocol {
+  func get(url: Foundation.URL, completionHandler: @escaping (AntourageViewer.HttpResponse?, Swift.Error?) -> Swift.Void)
+  func post(url: Foundation.URL, body: Foundation.Data?, completionHandler: @escaping (AntourageViewer.HttpResponse?, Swift.Error?) -> Swift.Void)
+  func delete(url: Foundation.URL, completionHandler: @escaping (AntourageViewer.HttpResponse?, Swift.Error?) -> Swift.Void)
 }
-extension MediaType : Swift.CustomStringConvertible {
-  public var description: Swift.String {
-    get
-  }
-}
-extension MediaType : Swift.Equatable {
-}
-public func == (lhs: AntourageViewer.MediaType, rhs: AntourageViewer.MediaType) -> Swift.Bool
 public struct WidgetMargins {
   public let vertical: CoreGraphics.CGFloat
   public let horizontal: CoreGraphics.CGFloat
   public init(vertical: CoreGraphics.CGFloat, horizontal: CoreGraphics.CGFloat)
 }
 public protocol PollManager {
-  func observePolls(deviceID: Swift.String, completion: @escaping ((AntourageViewer.Poll?) -> ()))
+  func observePolls(userID: Swift.String?, completion: @escaping ((AntourageViewer.Poll?) -> ()))
   func removeFirebaseObserver()
 }
 extension UIImage : Foundation.NSDiscardableContent {
@@ -1323,19 +1281,102 @@ extension UIImage : Foundation.NSDiscardableContent {
   @objc dynamic public func discardContentIfPossible()
   @objc dynamic public func isContentDiscarded() -> Swift.Bool
 }
-public class JSONHubProtocol : AntourageViewer.HubProtocol {
-  final public let name: Swift.String
-  final public let version: Swift.Int
-  final public let type: AntourageViewer.ProtocolType
-  public init(logger: AntourageViewer.Logger, encoder: Foundation.JSONEncoder = JSONEncoder(), decoder: Foundation.JSONDecoder = JSONDecoder())
-  public func parseMessages(input: Foundation.Data) throws -> [AntourageViewer.HubMessage]
-  public func createHubMessage(payload: Foundation.Data) throws -> AntourageViewer.HubMessage
-  public func writeMessage(message: AntourageViewer.HubMessage) throws -> Foundation.Data
-  @objc deinit
-}
 @objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class EmptyDataSourceView : UIKit.UIView {
   @objc override dynamic public init(frame: CoreGraphics.CGRect)
   @objc deinit
+}
+public struct RetryContext {
+  public let failedAttemptsCount: Swift.Int
+  public let reconnectStartTime: Foundation.Date
+  public let error: Swift.Error
+}
+public protocol ReconnectPolicy {
+  func nextAttemptInterval(retryContext: AntourageViewer.RetryContext) -> Dispatch.DispatchTimeInterval
+}
+public class DefaultReconnectPolicy : AntourageViewer.ReconnectPolicy {
+  public init(retryIntervals: [Dispatch.DispatchTimeInterval] = [.milliseconds(0), .seconds(2), .seconds(10), .seconds(30)])
+  public func nextAttemptInterval(retryContext: AntourageViewer.RetryContext) -> Dispatch.DispatchTimeInterval
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc(VideoContentMO) public class VideoContentMO : CoreData.NSManagedObject {
+  @objc override dynamic public init(entity: CoreData.NSEntityDescription, insertInto context: CoreData.NSManagedObjectContext?)
+  @objc deinit
+}
+public protocol PlayerMediaMetadata : Swift.CustomStringConvertible {
+  var title: Swift.String? { get }
+  var artist: Swift.String? { get }
+  var albumTitle: Swift.String? { get }
+  var image: Foundation.Data? { get }
+  var remoteImageUrl: Foundation.URL? { get }
+}
+extension PlayerMediaMetadata {
+  public var description: Swift.String {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers final public class AntWidget {
+  public static let shared: AntourageViewer.AntWidget
+  final public var firebaseCreator: AntourageViewer.FirebaseCreator?
+  final public var widgetView: AntourageViewer.WidgetView {
+    get
+    set
+  }
+  final public var widgetLocale: AntourageViewer.WidgetLocale?
+  final public var widgetPosition: AntourageViewer.WidgetPosition {
+    get
+    set
+  }
+  final public var widgetMargins: AntourageViewer.WidgetMargins {
+    get
+    set
+  }
+  final public var onViewerAppear: ((Foundation.NSDictionary) -> Swift.Void)?
+  final public var onViewerDisappear: ((Foundation.NSDictionary) -> Swift.Void)?
+  @objc deinit
+  public static func configure(path: Swift.String?)
+  public static func registerNotifications(fcmToken: Swift.String, completionHandler: @escaping (Swift.Result<Swift.String, Swift.Error>) -> Swift.Void)
+  public static func objc_registerNotifications(FCMToken: Swift.String, completionHandler: @escaping (Swift.String?, Swift.Error?) -> Swift.Void)
+  final public func showFeed()
+}
+extension AntWidget : AntourageViewer.ModernAVPlayerDelegate {
+  final public func modernAVPlayer(_ player: AntourageViewer.ModernAVPlayer, didStateChange state: AntourageViewer.ModernAVPlayer.State)
+  final public func modernAVPlayer(_ player: AntourageViewer.ModernAVPlayer, didItemDurationChange itemDuration: Swift.Double?)
+}
+public class HubConnectionBuilder {
+  public init(url: Foundation.URL)
+  public func withHubProtocol(hubProtocolFactory: @escaping (AntourageViewer.Logger) -> AntourageViewer.HubProtocol) -> AntourageViewer.HubConnectionBuilder
+  public func withHttpConnectionOptions(configureHttpOptions: (AntourageViewer.HttpConnectionOptions) -> Swift.Void) -> AntourageViewer.HubConnectionBuilder
+  public func withLogging(minLogLevel: AntourageViewer.LogLevel) -> AntourageViewer.HubConnectionBuilder
+  public func withLogging(logger: AntourageViewer.Logger) -> AntourageViewer.HubConnectionBuilder
+  public func withLogging(minLogLevel: AntourageViewer.LogLevel, logger: AntourageViewer.Logger) -> AntourageViewer.HubConnectionBuilder
+  public func withHubConnectionDelegate(delegate: AntourageViewer.HubConnectionDelegate) -> AntourageViewer.HubConnectionBuilder
+  public func withAutoReconnect(reconnectPolicy: AntourageViewer.ReconnectPolicy = DefaultReconnectPolicy()) -> AntourageViewer.HubConnectionBuilder
+  public func withPermittedTransportTypes(_ permittedTransportTypes: AntourageViewer.TransportType) -> AntourageViewer.HubConnectionBuilder
+  @available(*, deprecated)
+  public func withLegacyHttpConnection() -> AntourageViewer.HubConnectionBuilder
+  public func build() -> AntourageViewer.HubConnection
+  @objc deinit
+}
+extension HubConnectionBuilder {
+  public func withJSONHubProtocol() -> AntourageViewer.HubConnectionBuilder
+}
+public class ModernAVPlayerMediaItem : AntourageViewer.PlayerMediaItem {
+  final public let item: AVFoundation.AVPlayerItem
+  final public let url: Foundation.URL
+  final public let type: AntourageViewer.MediaType
+  final public let assetOptions: [Swift.String : Any]?
+  public init?(item: AVFoundation.AVPlayerItem, type: AntourageViewer.MediaType, metadata: AntourageViewer.ModernAVPlayerMediaMetadata? = nil, assetOptions: [Swift.String : Any]? = nil)
+  public func getMetadata() -> AntourageViewer.PlayerMediaMetadata?
+  public func setMetadata(_ metadata: AntourageViewer.PlayerMediaMetadata?)
+  @objc deinit
+}
+public protocol MediaPlayer : AnyObject, AntourageViewer.PlayerCommand {
+  var currentMedia: AntourageViewer.PlayerMedia? { get }
+  var currentTime: Swift.Double { get }
+  var loopMode: Swift.Bool { get set }
+  var player: AVFoundation.AVPlayer { get }
+  var remoteCommands: [AntourageViewer.ModernAVPlayerRemoteCommand]? { get }
+  func updateMetadata(_ metadata: AntourageViewer.PlayerMediaMetadata?)
 }
 public struct WebSocketEvents {
   public var open: () -> ()
@@ -1353,10 +1394,10 @@ public enum WebSocketBinaryType : Swift.CustomStringConvertible {
     get
   }
   public static func == (a: AntourageViewer.WebSocketBinaryType, b: AntourageViewer.WebSocketBinaryType) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
     get
   }
-  public func hash(into hasher: inout Swift.Hasher)
 }
 @objc public enum WebSocketReadyState : Swift.Int, Swift.CustomStringConvertible {
   case connecting = 0
@@ -1366,8 +1407,8 @@ public enum WebSocketBinaryType : Swift.CustomStringConvertible {
   public var description: Swift.String {
     get
   }
-  public typealias RawValue = Swift.Int
   public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
   public var rawValue: Swift.Int {
     get
   }
@@ -1402,8 +1443,8 @@ public struct WebSocketService : Swift.OptionSet {
   public static var Voice: AntourageViewer.WebSocketService {
     get
   }
-  public typealias Element = AntourageViewer.WebSocketService
   public typealias ArrayLiteralElement = AntourageViewer.WebSocketService
+  public typealias Element = AntourageViewer.WebSocketService
 }
 public enum WebSocketError : Swift.Error, Swift.CustomStringConvertible {
   case memory
@@ -1497,54 +1538,16 @@ extension WebSocket {
   @objc dynamic public func send(text: Swift.String)
   @objc dynamic public func send(data: Foundation.Data)
 }
-@_inheritsConvenienceInitializers @objc(VideoContentMO) public class VideoContentMO : CoreData.NSManagedObject {
-  @objc override dynamic public init(entity: CoreData.NSEntityDescription, insertInto context: CoreData.NSManagedObjectContext?)
-  @objc deinit
-}
-@_hasMissingDesignatedInitializers final public class AntWidget {
-  public static let shared: AntourageViewer.AntWidget
-  final public var firebaseCreator: AntourageViewer.FirebaseCreator?
-  final public var widgetView: AntourageViewer.WidgetView {
-    get
-    set
-  }
-  final public var widgetLocale: AntourageViewer.WidgetLocale?
-  final public var widgetPosition: AntourageViewer.WidgetPosition {
-    get
-    set
-  }
-  final public var widgetMargins: AntourageViewer.WidgetMargins {
-    get
-    set
-  }
-  final public var onViewerAppear: ((Foundation.NSDictionary) -> Swift.Void)?
-  final public var onViewerDisappear: ((Foundation.NSDictionary) -> Swift.Void)?
-  @objc deinit
-  public static func configure(path: Swift.String)
-  public static func registerNotifications(fcmToken: Swift.String, completionHandler: @escaping (Swift.Result<Swift.String, Swift.Error>) -> Swift.Void)
-  public static func objc_registerNotifications(FCMToken: Swift.String, completionHandler: @escaping (Swift.String?, Swift.Error?) -> Swift.Void)
-  final public func showFeed()
-}
-extension AntWidget : AntourageViewer.ModernAVPlayerDelegate {
-  final public func modernAVPlayer(_ player: AntourageViewer.ModernAVPlayer, didStateChange state: AntourageViewer.ModernAVPlayer.State)
-  final public func modernAVPlayer(_ player: AntourageViewer.ModernAVPlayer, didItemDurationChange itemDuration: Swift.Double?)
-}
-public protocol HttpClientProtocol {
-  func get(url: Foundation.URL, completionHandler: @escaping (AntourageViewer.HttpResponse?, Swift.Error?) -> Swift.Void)
-  func post(url: Foundation.URL, body: Foundation.Data?, completionHandler: @escaping (AntourageViewer.HttpResponse?, Swift.Error?) -> Swift.Void)
-  func delete(url: Foundation.URL, completionHandler: @escaping (AntourageViewer.HttpResponse?, Swift.Error?) -> Swift.Void)
-}
-extension AntourageViewer.ModernAVPlayer.State : Swift.Equatable {}
-extension AntourageViewer.ModernAVPlayer.State : Swift.Hashable {}
-extension AntourageViewer.ModernAVPlayer.State : Swift.RawRepresentable {}
 extension AntourageViewer.WidgetPosition : Swift.Equatable {}
 extension AntourageViewer.WidgetPosition : Swift.Hashable {}
 extension AntourageViewer.WidgetPosition : Swift.RawRepresentable {}
-extension AntourageViewer.KeychainItemAccessibility : Swift.Equatable {}
-extension AntourageViewer.KeychainItemAccessibility : Swift.Hashable {}
+extension AntourageViewer.ModernAVPlayerLoggerDomain : Swift.Equatable {}
+extension AntourageViewer.ModernAVPlayerLoggerDomain : Swift.Hashable {}
 extension AntourageViewer.LogLevel : Swift.Equatable {}
 extension AntourageViewer.LogLevel : Swift.Hashable {}
 extension AntourageViewer.LogLevel : Swift.RawRepresentable {}
+extension AntourageViewer.KeychainItemAccessibility : Swift.Equatable {}
+extension AntourageViewer.KeychainItemAccessibility : Swift.Hashable {}
 extension AntourageViewer.ProtocolType : Swift.Equatable {}
 extension AntourageViewer.ProtocolType : Swift.Hashable {}
 extension AntourageViewer.ProtocolType : Swift.RawRepresentable {}
@@ -1554,27 +1557,28 @@ extension AntourageViewer.MessageType : Swift.RawRepresentable {}
 extension AntourageViewer.ContentType : Swift.Equatable {}
 extension AntourageViewer.ContentType : Swift.Hashable {}
 extension AntourageViewer.ContentType : Swift.RawRepresentable {}
+extension AntourageViewer.PlayerUnavailableActionReason : Swift.Equatable {}
+extension AntourageViewer.PlayerUnavailableActionReason : Swift.Hashable {}
+extension AntourageViewer.PlayerError : Swift.Equatable {}
+extension AntourageViewer.PlayerError : Swift.Hashable {}
 extension AntourageViewer.WidgetLocale : Swift.Equatable {}
 extension AntourageViewer.WidgetLocale : Swift.Hashable {}
 extension AntourageViewer.WidgetLocale : Swift.RawRepresentable {}
-extension AntourageViewer.PlayerError : Swift.Equatable {}
-extension AntourageViewer.PlayerError : Swift.Hashable {}
 extension AntourageViewer.HTTPMethod : Swift.Equatable {}
 extension AntourageViewer.HTTPMethod : Swift.Hashable {}
 extension AntourageViewer.HTTPMethod : Swift.RawRepresentable {}
-extension AntourageViewer.PlayerUnavailableActionReason : Swift.Equatable {}
-extension AntourageViewer.PlayerUnavailableActionReason : Swift.Hashable {}
+extension AntourageViewer.TransferFormat : Swift.Equatable {}
+extension AntourageViewer.TransferFormat : Swift.Hashable {}
+extension AntourageViewer.TransferFormat : Swift.RawRepresentable {}
 @available(*, unavailable, renamed: "Connection")
 extension AntourageViewer.Reachability.NetworkStatus : Swift.Equatable {}
 @available(*, unavailable, renamed: "Connection")
 extension AntourageViewer.Reachability.NetworkStatus : Swift.Hashable {}
 extension AntourageViewer.Reachability.Connection : Swift.Equatable {}
 extension AntourageViewer.Reachability.Connection : Swift.Hashable {}
-extension AntourageViewer.ModernAVPlayerLoggerDomain : Swift.Equatable {}
-extension AntourageViewer.ModernAVPlayerLoggerDomain : Swift.Hashable {}
-extension AntourageViewer.TransferFormat : Swift.Equatable {}
-extension AntourageViewer.TransferFormat : Swift.Hashable {}
-extension AntourageViewer.TransferFormat : Swift.RawRepresentable {}
+extension AntourageViewer.ModernAVPlayer.State : Swift.Equatable {}
+extension AntourageViewer.ModernAVPlayer.State : Swift.Hashable {}
+extension AntourageViewer.ModernAVPlayer.State : Swift.RawRepresentable {}
 extension AntourageViewer.WebSocketBinaryType : Swift.Equatable {}
 extension AntourageViewer.WebSocketBinaryType : Swift.Hashable {}
 extension AntourageViewer.WebSocketReadyState : Swift.Equatable {}
