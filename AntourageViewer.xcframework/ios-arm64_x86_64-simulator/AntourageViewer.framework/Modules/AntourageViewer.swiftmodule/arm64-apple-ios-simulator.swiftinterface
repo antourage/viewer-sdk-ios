@@ -887,18 +887,6 @@ extension NSNotification.Name {
 public class Reachability {
   public typealias NetworkReachable = (AntourageViewer.Reachability) -> ()
   public typealias NetworkUnreachable = (AntourageViewer.Reachability) -> ()
-  @available(*, unavailable, renamed: "Connection")
-  public enum NetworkStatus : Swift.CustomStringConvertible {
-    case notReachable, reachableViaWiFi, reachableViaWWAN
-    public var description: Swift.String {
-      get
-    }
-    public static func == (a: AntourageViewer.Reachability.NetworkStatus, b: AntourageViewer.Reachability.NetworkStatus) -> Swift.Bool
-    public func hash(into hasher: inout Swift.Hasher)
-    public var hashValue: Swift.Int {
-      get
-    }
-  }
   public enum Connection : Swift.CustomStringConvertible {
     case unavailable, wifi, cellular
     public var description: Swift.String {
@@ -1570,10 +1558,6 @@ extension AntourageViewer.HTTPMethod : Swift.RawRepresentable {}
 extension AntourageViewer.TransferFormat : Swift.Equatable {}
 extension AntourageViewer.TransferFormat : Swift.Hashable {}
 extension AntourageViewer.TransferFormat : Swift.RawRepresentable {}
-@available(*, unavailable, renamed: "Connection")
-extension AntourageViewer.Reachability.NetworkStatus : Swift.Equatable {}
-@available(*, unavailable, renamed: "Connection")
-extension AntourageViewer.Reachability.NetworkStatus : Swift.Hashable {}
 extension AntourageViewer.Reachability.Connection : Swift.Equatable {}
 extension AntourageViewer.Reachability.Connection : Swift.Hashable {}
 extension AntourageViewer.ModernAVPlayer.State : Swift.Equatable {}
