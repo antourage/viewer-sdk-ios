@@ -64,7 +64,7 @@ public class Antourage: NSObject {
   }
   
   @objc
-  public static func configure(path: String = "") {
+  public static func configure(path: String? = nil) {
     AntWidget.configure(path: path)
   }
 
