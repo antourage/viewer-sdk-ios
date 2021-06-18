@@ -7,6 +7,8 @@ Pod::Spec.new do |spec|
   spec.author              = { 'Antourage AB' => 'info@antourage.com' }
   spec.documentation_url   = 'https://antourage.github.io'
   
+  spec.cocoapods_version = '>= 1.10.0'
+  spec.swift_version       = "5.0"
   spec.platform            = :ios, "11.3"
   spec.source              = { :git => 'https://github.com/antourage/viewer-sdk-ios.git', :tag => spec.version.to_s }
   spec.source_files        = 'Sources/Antourage/**/*.{swift}'
