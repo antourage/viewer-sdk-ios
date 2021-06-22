@@ -64,6 +64,10 @@ public class Antourage: NSObject {
   }
   
   @objc
+  public static func configure() {
+    AntWidget.configure()
+  }
+
   public static func configure(path: String? = nil) {
     AntWidget.configure(path: path)
   }
@@ -78,6 +82,10 @@ public class Antourage: NSObject {
   }
 
   @objc
+  public func showFeed() {
+    AntWidget.shared.showFeed()
+  }
+
   public func showFeed(animated: Bool = false, backButtonHidden: Bool = false) {
     AntWidget.shared.showFeed(animated: animated, backButtonHidden: backButtonHidden)
   }
