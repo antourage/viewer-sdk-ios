@@ -1328,7 +1328,7 @@ extension PlayerMediaMetadata {
   final public var onViewerAppear: ((Foundation.NSDictionary) -> Swift.Void)?
   final public var onViewerDisappear: ((Foundation.NSDictionary) -> Swift.Void)?
   @objc deinit
-  public static func configure(path: Swift.String? = nil)
+  public static func configure(path: Swift.String? = nil, skipOnboarding: Swift.Bool = false)
   public static func registerNotifications(fcmToken: Swift.String, completionHandler: @escaping (Swift.Result<Swift.String, Swift.Error>) -> Swift.Void)
   public static func objc_registerNotifications(FCMToken: Swift.String, completionHandler: @escaping (Swift.String?, Swift.Error?) -> Swift.Void)
   final public func showFeed(animated: Swift.Bool = false, backButtonHidden: Swift.Bool = false)

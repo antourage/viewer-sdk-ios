@@ -68,8 +68,8 @@ public class Antourage: NSObject {
     AntWidget.configure()
   }
 
-  public static func configure(path: String? = nil) {
-    AntWidget.configure(path: path)
+  public static func configure(path: String? = nil, skipOnboarding: Bool = false) {
+    AntWidget.configure(path: path, skipOnboarding: skipOnboarding)
   }
 
   public static func registerNotifications(fcmToken: String, completionHandler: @escaping (Result<String, Error>) -> Void) {
