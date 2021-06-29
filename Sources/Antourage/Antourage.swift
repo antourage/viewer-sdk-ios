@@ -68,6 +68,11 @@ public class Antourage: NSObject {
     AntWidget.configure()
   }
 
+  @objc
+  public static func configureWithoutOnboarding() {
+    AntWidget.configure(skipOnboarding: true)
+  }
+
   public static func configure(path: String? = nil, skipOnboarding: Bool = false) {
     AntWidget.configure(path: path, skipOnboarding: skipOnboarding)
   }
