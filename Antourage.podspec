@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name                = 'Antourage'
-  spec.version             = '3.0.3'
+  spec.version             = '3.0.4'
   spec.license             = { :type => 'MIT', :file => 'LICENSE' }
   spec.homepage            = 'https://antourage.com'
   spec.summary             = 'Antourage provides to users possibility to watch streams and use chat and polls'

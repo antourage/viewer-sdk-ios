@@ -10,6 +10,7 @@ import CoreData
 import CoreGraphics
 import Foundation
 import MediaPlayer
+import OSLog
 import SafariServices
 import Swift
 import SystemConfiguration
