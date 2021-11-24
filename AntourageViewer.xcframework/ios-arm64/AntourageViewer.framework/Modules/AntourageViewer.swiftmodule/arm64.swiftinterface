@@ -1,5 +1,5 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 5.4.2 (swiftlang-1205.0.28.2 clang-1205.0.19.57)
+// swift-compiler-version: Apple Swift version 5.5.1 (swiftlang-1300.0.31.4 clang-1300.0.29.6)
 // swift-module-flags: -target arm64-apple-ios11.3 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name AntourageViewer
 import AVFoundation
 import AVKit
@@ -16,6 +16,7 @@ import Swift
 import SystemConfiguration
 import UIKit
 import WebKit
+import _Concurrency
 import os.log
 import os
 import zlib
@@ -32,63 +33,62 @@ import zlib
   @objc public func encode(with coder: Foundation.NSCoder)
   @objc required convenience public init?(coder: Foundation.NSCoder)
   public init(userID: Swift.String, nickname: Swift.String, text: Swift.String, timestamp: Swift.Int?)
-  @objc override dynamic public init()
   @objc deinit
 }
-@objc @_inheritsConvenienceInitializers public class PollTableViewCell : UIKit.UITableViewCell {
-  @objc @IBOutlet public var titleLabel: UIKit.UILabel!
-  public var isStatistic: Swift.Bool {
+@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) public class PollTableViewCell : UIKit.UITableViewCell {
+  @objc @IBOutlet @_Concurrency.MainActor(unsafe) public var titleLabel: UIKit.UILabel!
+  @_Concurrency.MainActor(unsafe) public var isStatistic: Swift.Bool {
     get
     set
   }
-  public var isUserChoise: Swift.Bool {
+  @_Concurrency.MainActor(unsafe) public var isUserChoise: Swift.Bool {
     get
     set
   }
-  public var percentage: Swift.Int {
+  @_Concurrency.MainActor(unsafe) public var percentage: Swift.Int {
     get
     set
   }
   @objc override dynamic public func awakeFromNib()
   @available(iOS 3.0, *)
-  @objc override dynamic public init(style: UIKit.UITableViewCell.CellStyle, reuseIdentifier: Swift.String?)
-  @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(style: UIKit.UITableViewCell.CellStyle, reuseIdentifier: Swift.String?)
+  @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
   @objc deinit
 }
-extension UIViewController : AuthenticationServices.ASWebAuthenticationPresentationContextProviding {
+extension UIKit.UIViewController : AuthenticationServices.ASWebAuthenticationPresentationContextProviding {
   @available(iOS 13.0, *)
-  @objc dynamic public func presentationAnchor(for session: AuthenticationServices.ASWebAuthenticationSession) -> AuthenticationServices.ASPresentationAnchor
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func presentationAnchor(for session: AuthenticationServices.ASWebAuthenticationSession) -> AuthenticationServices.ASPresentationAnchor
 }
 public enum MediaType {
   case clip
   case stream(isLive: Swift.Bool)
 }
-extension MediaType : Swift.CustomStringConvertible {
+extension AntourageViewer.MediaType : Swift.CustomStringConvertible {
   public var description: Swift.String {
     get
   }
 }
-extension MediaType : Swift.Equatable {
+extension AntourageViewer.MediaType : Swift.Equatable {
 }
 public func == (lhs: AntourageViewer.MediaType, rhs: AntourageViewer.MediaType) -> Swift.Bool
-@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class SeekPaddingView : UIKit.UIView {
-  public var soughtTime: Swift.Int {
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) public class SeekPaddingView : UIKit.UIView {
+  @_Concurrency.MainActor(unsafe) public var soughtTime: Swift.Int {
     get
     set
   }
-  public init(showInView view: UIKit.UIView)
-  @objc override dynamic public init(frame: CoreGraphics.CGRect)
-  public func seekBackward()
+  @_Concurrency.MainActor(unsafe) public init(showInView view: UIKit.UIView)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreGraphics.CGRect)
+  @_Concurrency.MainActor(unsafe) public func seekBackward()
   @objc deinit
-  public func seekForward()
+  @_Concurrency.MainActor(unsafe) public func seekForward()
 }
-@objc @_inheritsConvenienceInitializers final public class WidgetView : UIKit.UIView {
-  @objc override final public func layoutSubviews()
-  @objc override final public func didMoveToSuperview()
-  @objc override final public func touchesEnded(_ touches: Swift.Set<UIKit.UITouch>, with event: UIKit.UIEvent?)
-  @objc override final public func willMove(toWindow newWindow: UIKit.UIWindow?)
-  @objc override dynamic public init(frame: CoreGraphics.CGRect)
-  @objc required dynamic public init?(coder: Foundation.NSCoder)
+@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) final public class WidgetView : UIKit.UIView {
+  @_Concurrency.MainActor(unsafe) @objc override final public func layoutSubviews()
+  @_Concurrency.MainActor(unsafe) @objc override final public func didMoveToSuperview()
+  @_Concurrency.MainActor(unsafe) @objc override final public func touchesEnded(_ touches: Swift.Set<UIKit.UITouch>, with event: UIKit.UIEvent?)
+  @_Concurrency.MainActor(unsafe) @objc override final public func willMove(toWindow newWindow: UIKit.UIWindow?)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreGraphics.CGRect)
+  @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
   @objc deinit
 }
 public enum WidgetPosition : Swift.String {
@@ -101,52 +101,52 @@ public enum WidgetPosition : Swift.String {
     get
   }
 }
-extension HubConnection {
-  public func invoke(method: Swift.String, invocationDidComplete: @escaping (Swift.Error?) -> Swift.Void)
-  public func invoke<T1>(method: Swift.String, _ arg1: T1, invocationDidComplete: @escaping (Swift.Error?) -> Swift.Void) where T1 : Swift.Encodable
-  public func invoke<T1, T2>(method: Swift.String, _ arg1: T1, _ arg2: T2, invocationDidComplete: @escaping (Swift.Error?) -> Swift.Void) where T1 : Swift.Encodable, T2 : Swift.Encodable
-  public func invoke<T1, T2, T3>(method: Swift.String, _ arg1: T1, _ arg2: T2, _ arg3: T3, invocationDidComplete: @escaping (Swift.Error?) -> Swift.Void) where T1 : Swift.Encodable, T2 : Swift.Encodable, T3 : Swift.Encodable
-  public func invoke<T1, T2, T3, T4>(method: Swift.String, _ arg1: T1, _ arg2: T2, _ arg3: T3, _ arg4: T4, invocationDidComplete: @escaping (Swift.Error?) -> Swift.Void) where T1 : Swift.Encodable, T2 : Swift.Encodable, T3 : Swift.Encodable, T4 : Swift.Encodable
-  public func invoke<T1, T2, T3, T4, T5>(method: Swift.String, _ arg1: T1, _ arg2: T2, _ arg3: T3, _ arg4: T4, _ arg5: T5, invocationDidComplete: @escaping (Swift.Error?) -> Swift.Void) where T1 : Swift.Encodable, T2 : Swift.Encodable, T3 : Swift.Encodable, T4 : Swift.Encodable, T5 : Swift.Encodable
-  public func invoke<T1, T2, T3, T4, T5, T6>(method: Swift.String, _ arg1: T1, _ arg2: T2, _ arg3: T3, _ arg4: T4, _ arg5: T5, _ arg6: T6, invocationDidComplete: @escaping (Swift.Error?) -> Swift.Void) where T1 : Swift.Encodable, T2 : Swift.Encodable, T3 : Swift.Encodable, T4 : Swift.Encodable, T5 : Swift.Encodable, T6 : Swift.Encodable
-  public func invoke<T1, T2, T3, T4, T5, T6, T7>(method: Swift.String, _ arg1: T1, _ arg2: T2, _ arg3: T3, _ arg4: T4, _ arg5: T5, _ arg6: T6, _ arg7: T7, invocationDidComplete: @escaping (Swift.Error?) -> Swift.Void) where T1 : Swift.Encodable, T2 : Swift.Encodable, T3 : Swift.Encodable, T4 : Swift.Encodable, T5 : Swift.Encodable, T6 : Swift.Encodable, T7 : Swift.Encodable
-  public func invoke<T1, T2, T3, T4, T5, T6, T7, T8>(method: Swift.String, _ arg1: T1, _ arg2: T2, _ arg3: T3, _ arg4: T4, _ arg5: T5, _ arg6: T6, _ arg7: T7, _ arg8: T8, invocationDidComplete: @escaping (Swift.Error?) -> Swift.Void) where T1 : Swift.Encodable, T2 : Swift.Encodable, T3 : Swift.Encodable, T4 : Swift.Encodable, T5 : Swift.Encodable, T6 : Swift.Encodable, T7 : Swift.Encodable, T8 : Swift.Encodable
-  public func invoke<TRes>(method: Swift.String, resultType: TRes.Type, invocationDidComplete: @escaping (TRes?, Swift.Error?) -> Swift.Void) where TRes : Swift.Decodable
-  public func invoke<T1, TRes>(method: Swift.String, _ arg1: T1, resultType: TRes.Type, invocationDidComplete: @escaping (TRes?, Swift.Error?) -> Swift.Void) where T1 : Swift.Encodable, TRes : Swift.Decodable
-  public func invoke<T1, T2, TRes>(method: Swift.String, _ arg1: T1, _ arg2: T2, resultType: TRes.Type, invocationDidComplete: @escaping (TRes?, Swift.Error?) -> Swift.Void) where T1 : Swift.Encodable, T2 : Swift.Encodable, TRes : Swift.Decodable
-  public func invoke<T1, T2, T3, TRes>(method: Swift.String, _ arg1: T1, _ arg2: T2, _ arg3: T3, resultType: TRes.Type, invocationDidComplete: @escaping (TRes?, Swift.Error?) -> Swift.Void) where T1 : Swift.Encodable, T2 : Swift.Encodable, T3 : Swift.Encodable, TRes : Swift.Decodable
-  public func invoke<T1, T2, T3, T4, TRes>(method: Swift.String, _ arg1: T1, _ arg2: T2, _ arg3: T3, _ arg4: T4, resultType: TRes.Type, invocationDidComplete: @escaping (TRes?, Swift.Error?) -> Swift.Void) where T1 : Swift.Encodable, T2 : Swift.Encodable, T3 : Swift.Encodable, T4 : Swift.Encodable, TRes : Swift.Decodable
-  public func invoke<T1, T2, T3, T4, T5, TRes>(method: Swift.String, _ arg1: T1, _ arg2: T2, _ arg3: T3, _ arg4: T4, _ arg5: T5, resultType: TRes.Type, invocationDidComplete: @escaping (TRes?, Swift.Error?) -> Swift.Void) where T1 : Swift.Encodable, T2 : Swift.Encodable, T3 : Swift.Encodable, T4 : Swift.Encodable, T5 : Swift.Encodable, TRes : Swift.Decodable
-  public func invoke<T1, T2, T3, T4, T5, T6, TRes>(method: Swift.String, _ arg1: T1, _ arg2: T2, _ arg3: T3, _ arg4: T4, _ arg5: T5, _ arg6: T6, resultType: TRes.Type, invocationDidComplete: @escaping (TRes?, Swift.Error?) -> Swift.Void) where T1 : Swift.Encodable, T2 : Swift.Encodable, T3 : Swift.Encodable, T4 : Swift.Encodable, T5 : Swift.Encodable, T6 : Swift.Encodable, TRes : Swift.Decodable
-  public func invoke<T1, T2, T3, T4, T5, T6, T7, TRes>(method: Swift.String, _ arg1: T1, _ arg2: T2, _ arg3: T3, _ arg4: T4, _ arg5: T5, _ arg6: T6, _ arg7: T7, resultType: TRes.Type, invocationDidComplete: @escaping (TRes?, Swift.Error?) -> Swift.Void) where T1 : Swift.Encodable, T2 : Swift.Encodable, T3 : Swift.Encodable, T4 : Swift.Encodable, T5 : Swift.Encodable, T6 : Swift.Encodable, T7 : Swift.Encodable, TRes : Swift.Decodable
-  public func invoke<T1, T2, T3, T4, T5, T6, T7, T8, TRes>(method: Swift.String, _ arg1: T1, _ arg2: T2, _ arg3: T3, _ arg4: T4, _ arg5: T5, _ arg6: T6, _ arg7: T7, _ arg8: T8, resultType: TRes.Type, invocationDidComplete: @escaping (TRes?, Swift.Error?) -> Swift.Void) where T1 : Swift.Encodable, T2 : Swift.Encodable, T3 : Swift.Encodable, T4 : Swift.Encodable, T5 : Swift.Encodable, T6 : Swift.Encodable, T7 : Swift.Encodable, T8 : Swift.Encodable, TRes : Swift.Decodable
-  public func send(method: Swift.String, sendDidComplete: @escaping (Swift.Error?) -> Swift.Void = {_ in})
-  public func send<T1>(method: Swift.String, _ arg1: T1, sendDidComplete: @escaping (Swift.Error?) -> Swift.Void = {_ in}) where T1 : Swift.Encodable
-  public func send<T1, T2>(method: Swift.String, _ arg1: T1, _ arg2: T2, sendDidComplete: @escaping (Swift.Error?) -> Swift.Void = {_ in}) where T1 : Swift.Encodable, T2 : Swift.Encodable
-  public func send<T1, T2, T3>(method: Swift.String, _ arg1: T1, _ arg2: T2, _ arg3: T3, sendDidComplete: @escaping (Swift.Error?) -> Swift.Void = {_ in}) where T1 : Swift.Encodable, T2 : Swift.Encodable, T3 : Swift.Encodable
-  public func send<T1, T2, T3, T4>(method: Swift.String, _ arg1: T1, _ arg2: T2, _ arg3: T3, _ arg4: T4, sendDidComplete: @escaping (Swift.Error?) -> Swift.Void = {_ in}) where T1 : Swift.Encodable, T2 : Swift.Encodable, T3 : Swift.Encodable, T4 : Swift.Encodable
-  public func send<T1, T2, T3, T4, T5>(method: Swift.String, _ arg1: T1, _ arg2: T2, _ arg3: T3, _ arg4: T4, _ arg5: T5, sendDidComplete: @escaping (Swift.Error?) -> Swift.Void = {_ in}) where T1 : Swift.Encodable, T2 : Swift.Encodable, T3 : Swift.Encodable, T4 : Swift.Encodable, T5 : Swift.Encodable
-  public func send<T1, T2, T3, T4, T5, T6>(method: Swift.String, _ arg1: T1, _ arg2: T2, _ arg3: T3, _ arg4: T4, _ arg5: T5, _ arg6: T6, sendDidComplete: @escaping (Swift.Error?) -> Swift.Void = {_ in}) where T1 : Swift.Encodable, T2 : Swift.Encodable, T3 : Swift.Encodable, T4 : Swift.Encodable, T5 : Swift.Encodable, T6 : Swift.Encodable
-  public func send<T1, T2, T3, T4, T5, T6, T7>(method: Swift.String, _ arg1: T1, _ arg2: T2, _ arg3: T3, _ arg4: T4, _ arg5: T5, _ arg6: T6, _ arg7: T7, sendDidComplete: @escaping (Swift.Error?) -> Swift.Void = {_ in}) where T1 : Swift.Encodable, T2 : Swift.Encodable, T3 : Swift.Encodable, T4 : Swift.Encodable, T5 : Swift.Encodable, T6 : Swift.Encodable, T7 : Swift.Encodable
-  public func send<T1, T2, T3, T4, T5, T6, T7, T8>(method: Swift.String, _ arg1: T1, _ arg2: T2, _ arg3: T3, _ arg4: T4, _ arg5: T5, _ arg6: T6, _ arg7: T7, _ arg8: T8, sendDidComplete: @escaping (Swift.Error?) -> Swift.Void = {_ in}) where T1 : Swift.Encodable, T2 : Swift.Encodable, T3 : Swift.Encodable, T4 : Swift.Encodable, T5 : Swift.Encodable, T6 : Swift.Encodable, T7 : Swift.Encodable, T8 : Swift.Encodable
+extension AntourageViewer.HubConnection {
+  public func invoke(method: Swift.String, invocationDidComplete: @escaping (_ error: Swift.Error?) -> Swift.Void)
+  public func invoke<T1>(method: Swift.String, _ arg1: T1, invocationDidComplete: @escaping (_ error: Swift.Error?) -> Swift.Void) where T1 : Swift.Encodable
+  public func invoke<T1, T2>(method: Swift.String, _ arg1: T1, _ arg2: T2, invocationDidComplete: @escaping (_ error: Swift.Error?) -> Swift.Void) where T1 : Swift.Encodable, T2 : Swift.Encodable
+  public func invoke<T1, T2, T3>(method: Swift.String, _ arg1: T1, _ arg2: T2, _ arg3: T3, invocationDidComplete: @escaping (_ error: Swift.Error?) -> Swift.Void) where T1 : Swift.Encodable, T2 : Swift.Encodable, T3 : Swift.Encodable
+  public func invoke<T1, T2, T3, T4>(method: Swift.String, _ arg1: T1, _ arg2: T2, _ arg3: T3, _ arg4: T4, invocationDidComplete: @escaping (_ error: Swift.Error?) -> Swift.Void) where T1 : Swift.Encodable, T2 : Swift.Encodable, T3 : Swift.Encodable, T4 : Swift.Encodable
+  public func invoke<T1, T2, T3, T4, T5>(method: Swift.String, _ arg1: T1, _ arg2: T2, _ arg3: T3, _ arg4: T4, _ arg5: T5, invocationDidComplete: @escaping (_ error: Swift.Error?) -> Swift.Void) where T1 : Swift.Encodable, T2 : Swift.Encodable, T3 : Swift.Encodable, T4 : Swift.Encodable, T5 : Swift.Encodable
+  public func invoke<T1, T2, T3, T4, T5, T6>(method: Swift.String, _ arg1: T1, _ arg2: T2, _ arg3: T3, _ arg4: T4, _ arg5: T5, _ arg6: T6, invocationDidComplete: @escaping (_ error: Swift.Error?) -> Swift.Void) where T1 : Swift.Encodable, T2 : Swift.Encodable, T3 : Swift.Encodable, T4 : Swift.Encodable, T5 : Swift.Encodable, T6 : Swift.Encodable
+  public func invoke<T1, T2, T3, T4, T5, T6, T7>(method: Swift.String, _ arg1: T1, _ arg2: T2, _ arg3: T3, _ arg4: T4, _ arg5: T5, _ arg6: T6, _ arg7: T7, invocationDidComplete: @escaping (_ error: Swift.Error?) -> Swift.Void) where T1 : Swift.Encodable, T2 : Swift.Encodable, T3 : Swift.Encodable, T4 : Swift.Encodable, T5 : Swift.Encodable, T6 : Swift.Encodable, T7 : Swift.Encodable
+  public func invoke<T1, T2, T3, T4, T5, T6, T7, T8>(method: Swift.String, _ arg1: T1, _ arg2: T2, _ arg3: T3, _ arg4: T4, _ arg5: T5, _ arg6: T6, _ arg7: T7, _ arg8: T8, invocationDidComplete: @escaping (_ error: Swift.Error?) -> Swift.Void) where T1 : Swift.Encodable, T2 : Swift.Encodable, T3 : Swift.Encodable, T4 : Swift.Encodable, T5 : Swift.Encodable, T6 : Swift.Encodable, T7 : Swift.Encodable, T8 : Swift.Encodable
+  public func invoke<TRes>(method: Swift.String, resultType: TRes.Type, invocationDidComplete: @escaping (_ result: TRes?, _ error: Swift.Error?) -> Swift.Void) where TRes : Swift.Decodable
+  public func invoke<T1, TRes>(method: Swift.String, _ arg1: T1, resultType: TRes.Type, invocationDidComplete: @escaping (_ result: TRes?, _ error: Swift.Error?) -> Swift.Void) where T1 : Swift.Encodable, TRes : Swift.Decodable
+  public func invoke<T1, T2, TRes>(method: Swift.String, _ arg1: T1, _ arg2: T2, resultType: TRes.Type, invocationDidComplete: @escaping (_ result: TRes?, _ error: Swift.Error?) -> Swift.Void) where T1 : Swift.Encodable, T2 : Swift.Encodable, TRes : Swift.Decodable
+  public func invoke<T1, T2, T3, TRes>(method: Swift.String, _ arg1: T1, _ arg2: T2, _ arg3: T3, resultType: TRes.Type, invocationDidComplete: @escaping (_ result: TRes?, _ error: Swift.Error?) -> Swift.Void) where T1 : Swift.Encodable, T2 : Swift.Encodable, T3 : Swift.Encodable, TRes : Swift.Decodable
+  public func invoke<T1, T2, T3, T4, TRes>(method: Swift.String, _ arg1: T1, _ arg2: T2, _ arg3: T3, _ arg4: T4, resultType: TRes.Type, invocationDidComplete: @escaping (_ result: TRes?, _ error: Swift.Error?) -> Swift.Void) where T1 : Swift.Encodable, T2 : Swift.Encodable, T3 : Swift.Encodable, T4 : Swift.Encodable, TRes : Swift.Decodable
+  public func invoke<T1, T2, T3, T4, T5, TRes>(method: Swift.String, _ arg1: T1, _ arg2: T2, _ arg3: T3, _ arg4: T4, _ arg5: T5, resultType: TRes.Type, invocationDidComplete: @escaping (_ result: TRes?, _ error: Swift.Error?) -> Swift.Void) where T1 : Swift.Encodable, T2 : Swift.Encodable, T3 : Swift.Encodable, T4 : Swift.Encodable, T5 : Swift.Encodable, TRes : Swift.Decodable
+  public func invoke<T1, T2, T3, T4, T5, T6, TRes>(method: Swift.String, _ arg1: T1, _ arg2: T2, _ arg3: T3, _ arg4: T4, _ arg5: T5, _ arg6: T6, resultType: TRes.Type, invocationDidComplete: @escaping (_ result: TRes?, _ error: Swift.Error?) -> Swift.Void) where T1 : Swift.Encodable, T2 : Swift.Encodable, T3 : Swift.Encodable, T4 : Swift.Encodable, T5 : Swift.Encodable, T6 : Swift.Encodable, TRes : Swift.Decodable
+  public func invoke<T1, T2, T3, T4, T5, T6, T7, TRes>(method: Swift.String, _ arg1: T1, _ arg2: T2, _ arg3: T3, _ arg4: T4, _ arg5: T5, _ arg6: T6, _ arg7: T7, resultType: TRes.Type, invocationDidComplete: @escaping (_ result: TRes?, _ error: Swift.Error?) -> Swift.Void) where T1 : Swift.Encodable, T2 : Swift.Encodable, T3 : Swift.Encodable, T4 : Swift.Encodable, T5 : Swift.Encodable, T6 : Swift.Encodable, T7 : Swift.Encodable, TRes : Swift.Decodable
+  public func invoke<T1, T2, T3, T4, T5, T6, T7, T8, TRes>(method: Swift.String, _ arg1: T1, _ arg2: T2, _ arg3: T3, _ arg4: T4, _ arg5: T5, _ arg6: T6, _ arg7: T7, _ arg8: T8, resultType: TRes.Type, invocationDidComplete: @escaping (_ result: TRes?, _ error: Swift.Error?) -> Swift.Void) where T1 : Swift.Encodable, T2 : Swift.Encodable, T3 : Swift.Encodable, T4 : Swift.Encodable, T5 : Swift.Encodable, T6 : Swift.Encodable, T7 : Swift.Encodable, T8 : Swift.Encodable, TRes : Swift.Decodable
+  public func send(method: Swift.String, sendDidComplete: @escaping (_ error: Swift.Error?) -> Swift.Void = {_ in})
+  public func send<T1>(method: Swift.String, _ arg1: T1, sendDidComplete: @escaping (_ error: Swift.Error?) -> Swift.Void = {_ in}) where T1 : Swift.Encodable
+  public func send<T1, T2>(method: Swift.String, _ arg1: T1, _ arg2: T2, sendDidComplete: @escaping (_ error: Swift.Error?) -> Swift.Void = {_ in}) where T1 : Swift.Encodable, T2 : Swift.Encodable
+  public func send<T1, T2, T3>(method: Swift.String, _ arg1: T1, _ arg2: T2, _ arg3: T3, sendDidComplete: @escaping (_ error: Swift.Error?) -> Swift.Void = {_ in}) where T1 : Swift.Encodable, T2 : Swift.Encodable, T3 : Swift.Encodable
+  public func send<T1, T2, T3, T4>(method: Swift.String, _ arg1: T1, _ arg2: T2, _ arg3: T3, _ arg4: T4, sendDidComplete: @escaping (_ error: Swift.Error?) -> Swift.Void = {_ in}) where T1 : Swift.Encodable, T2 : Swift.Encodable, T3 : Swift.Encodable, T4 : Swift.Encodable
+  public func send<T1, T2, T3, T4, T5>(method: Swift.String, _ arg1: T1, _ arg2: T2, _ arg3: T3, _ arg4: T4, _ arg5: T5, sendDidComplete: @escaping (_ error: Swift.Error?) -> Swift.Void = {_ in}) where T1 : Swift.Encodable, T2 : Swift.Encodable, T3 : Swift.Encodable, T4 : Swift.Encodable, T5 : Swift.Encodable
+  public func send<T1, T2, T3, T4, T5, T6>(method: Swift.String, _ arg1: T1, _ arg2: T2, _ arg3: T3, _ arg4: T4, _ arg5: T5, _ arg6: T6, sendDidComplete: @escaping (_ error: Swift.Error?) -> Swift.Void = {_ in}) where T1 : Swift.Encodable, T2 : Swift.Encodable, T3 : Swift.Encodable, T4 : Swift.Encodable, T5 : Swift.Encodable, T6 : Swift.Encodable
+  public func send<T1, T2, T3, T4, T5, T6, T7>(method: Swift.String, _ arg1: T1, _ arg2: T2, _ arg3: T3, _ arg4: T4, _ arg5: T5, _ arg6: T6, _ arg7: T7, sendDidComplete: @escaping (_ error: Swift.Error?) -> Swift.Void = {_ in}) where T1 : Swift.Encodable, T2 : Swift.Encodable, T3 : Swift.Encodable, T4 : Swift.Encodable, T5 : Swift.Encodable, T6 : Swift.Encodable, T7 : Swift.Encodable
+  public func send<T1, T2, T3, T4, T5, T6, T7, T8>(method: Swift.String, _ arg1: T1, _ arg2: T2, _ arg3: T3, _ arg4: T4, _ arg5: T5, _ arg6: T6, _ arg7: T7, _ arg8: T8, sendDidComplete: @escaping (_ error: Swift.Error?) -> Swift.Void = {_ in}) where T1 : Swift.Encodable, T2 : Swift.Encodable, T3 : Swift.Encodable, T4 : Swift.Encodable, T5 : Swift.Encodable, T6 : Swift.Encodable, T7 : Swift.Encodable, T8 : Swift.Encodable
   public func on(method: Swift.String, callback: @escaping () -> Swift.Void)
-  public func on<T1>(method: Swift.String, callback: @escaping (T1) -> Swift.Void) where T1 : Swift.Decodable
-  public func on<T1, T2>(method: Swift.String, callback: @escaping (T1, T2) -> Swift.Void) where T1 : Swift.Decodable, T2 : Swift.Decodable
-  public func on<T1, T2, T3>(method: Swift.String, callback: @escaping (T1, T2, T3) -> Swift.Void) where T1 : Swift.Decodable, T2 : Swift.Decodable, T3 : Swift.Decodable
-  public func on<T1, T2, T3, T4>(method: Swift.String, callback: @escaping (T1, T2, T3, T4) -> Swift.Void) where T1 : Swift.Decodable, T2 : Swift.Decodable, T3 : Swift.Decodable, T4 : Swift.Decodable
-  public func on<T1, T2, T3, T4, T5>(method: Swift.String, callback: @escaping (T1, T2, T3, T4, T5) -> Swift.Void) where T1 : Swift.Decodable, T2 : Swift.Decodable, T3 : Swift.Decodable, T4 : Swift.Decodable, T5 : Swift.Decodable
-  public func on<T1, T2, T3, T4, T5, T6>(method: Swift.String, callback: @escaping (T1, T2, T3, T4, T5, T6) -> Swift.Void) where T1 : Swift.Decodable, T2 : Swift.Decodable, T3 : Swift.Decodable, T4 : Swift.Decodable, T5 : Swift.Decodable, T6 : Swift.Decodable
-  public func on<T1, T2, T3, T4, T5, T6, T7>(method: Swift.String, callback: @escaping (T1, T2, T3, T4, T5, T6, T7) -> Swift.Void) where T1 : Swift.Decodable, T2 : Swift.Decodable, T3 : Swift.Decodable, T4 : Swift.Decodable, T5 : Swift.Decodable, T6 : Swift.Decodable, T7 : Swift.Decodable
-  public func on<T1, T2, T3, T4, T5, T6, T7, T8>(method: Swift.String, callback: @escaping (T1, T2, T3, T4, T5, T6, T7, T8) -> Swift.Void) where T1 : Swift.Decodable, T2 : Swift.Decodable, T3 : Swift.Decodable, T4 : Swift.Decodable, T5 : Swift.Decodable, T6 : Swift.Decodable, T7 : Swift.Decodable, T8 : Swift.Decodable
-  public func stream<TItemType>(method: Swift.String, streamItemReceived: @escaping (TItemType) -> Swift.Void, invocationDidComplete: @escaping (Swift.Error?) -> Swift.Void) -> AntourageViewer.StreamHandle where TItemType : Swift.Decodable
-  public func stream<T1, TItemType>(method: Swift.String, _ arg1: T1, streamItemReceived: @escaping (TItemType) -> Swift.Void, invocationDidComplete: @escaping (Swift.Error?) -> Swift.Void) -> AntourageViewer.StreamHandle where T1 : Swift.Encodable, TItemType : Swift.Decodable
-  public func stream<T1, T2, TItemType>(method: Swift.String, _ arg1: T1, _ arg2: T2, streamItemReceived: @escaping (TItemType) -> Swift.Void, invocationDidComplete: @escaping (Swift.Error?) -> Swift.Void) -> AntourageViewer.StreamHandle where T1 : Swift.Encodable, T2 : Swift.Encodable, TItemType : Swift.Decodable
-  public func stream<T1, T2, T3, TItemType>(method: Swift.String, _ arg1: T1, _ arg2: T2, _ arg3: T3, streamItemReceived: @escaping (TItemType) -> Swift.Void, invocationDidComplete: @escaping (Swift.Error?) -> Swift.Void) -> AntourageViewer.StreamHandle where T1 : Swift.Encodable, T2 : Swift.Encodable, T3 : Swift.Encodable, TItemType : Swift.Decodable
-  public func stream<T1, T2, T3, T4, TItemType>(method: Swift.String, _ arg1: T1, _ arg2: T2, _ arg3: T3, _ arg4: T4, streamItemReceived: @escaping (TItemType) -> Swift.Void, invocationDidComplete: @escaping (Swift.Error?) -> Swift.Void) -> AntourageViewer.StreamHandle where T1 : Swift.Encodable, T2 : Swift.Encodable, T3 : Swift.Encodable, T4 : Swift.Encodable, TItemType : Swift.Decodable
-  public func stream<T1, T2, T3, T4, T5, TItemType>(method: Swift.String, _ arg1: T1, _ arg2: T2, _ arg3: T3, _ arg4: T4, _ arg5: T5, streamItemReceived: @escaping (TItemType) -> Swift.Void, invocationDidComplete: @escaping (Swift.Error?) -> Swift.Void) -> AntourageViewer.StreamHandle where T1 : Swift.Encodable, T2 : Swift.Encodable, T3 : Swift.Encodable, T4 : Swift.Encodable, T5 : Swift.Encodable, TItemType : Swift.Decodable
-  public func stream<T1, T2, T3, T4, T5, T6, TItemType>(method: Swift.String, _ arg1: T1, _ arg2: T2, _ arg3: T3, _ arg4: T4, _ arg5: T5, _ arg6: T6, streamItemReceived: @escaping (TItemType) -> Swift.Void, invocationDidComplete: @escaping (Swift.Error?) -> Swift.Void) -> AntourageViewer.StreamHandle where T1 : Swift.Encodable, T2 : Swift.Encodable, T3 : Swift.Encodable, T4 : Swift.Encodable, T5 : Swift.Encodable, T6 : Swift.Encodable, TItemType : Swift.Decodable
-  public func stream<T1, T2, T3, T4, T5, T6, T7, TItemType>(method: Swift.String, _ arg1: T1, _ arg2: T2, _ arg3: T3, _ arg4: T4, _ arg5: T5, _ arg6: T6, _ arg7: T7, streamItemReceived: @escaping (TItemType) -> Swift.Void, invocationDidComplete: @escaping (Swift.Error?) -> Swift.Void) -> AntourageViewer.StreamHandle where T1 : Swift.Encodable, T2 : Swift.Encodable, T3 : Swift.Encodable, T4 : Swift.Encodable, T5 : Swift.Encodable, T6 : Swift.Encodable, T7 : Swift.Encodable, TItemType : Swift.Decodable
-  public func stream<T1, T2, T3, T4, T5, T6, T7, T8, TItemType>(method: Swift.String, _ arg1: T1, _ arg2: T2, _ arg3: T3, _ arg4: T4, _ arg5: T5, _ arg6: T6, _ arg7: T7, _ arg8: T8, streamItemReceived: @escaping (TItemType) -> Swift.Void, invocationDidComplete: @escaping (Swift.Error?) -> Swift.Void) -> AntourageViewer.StreamHandle where T1 : Swift.Encodable, T2 : Swift.Encodable, T3 : Swift.Encodable, T4 : Swift.Encodable, T5 : Swift.Encodable, T6 : Swift.Encodable, T7 : Swift.Encodable, T8 : Swift.Encodable, TItemType : Swift.Decodable
+  public func on<T1>(method: Swift.String, callback: @escaping (_ arg1: T1) -> Swift.Void) where T1 : Swift.Decodable
+  public func on<T1, T2>(method: Swift.String, callback: @escaping (_ arg1: T1, _ arg2: T2) -> Swift.Void) where T1 : Swift.Decodable, T2 : Swift.Decodable
+  public func on<T1, T2, T3>(method: Swift.String, callback: @escaping (_ arg1: T1, _ arg2: T2, _ arg3: T3) -> Swift.Void) where T1 : Swift.Decodable, T2 : Swift.Decodable, T3 : Swift.Decodable
+  public func on<T1, T2, T3, T4>(method: Swift.String, callback: @escaping (_ arg1: T1, _ arg2: T2, _ arg3: T3, _ arg4: T4) -> Swift.Void) where T1 : Swift.Decodable, T2 : Swift.Decodable, T3 : Swift.Decodable, T4 : Swift.Decodable
+  public func on<T1, T2, T3, T4, T5>(method: Swift.String, callback: @escaping (_ arg1: T1, _ arg2: T2, _ arg3: T3, _ arg4: T4, _ arg5: T5) -> Swift.Void) where T1 : Swift.Decodable, T2 : Swift.Decodable, T3 : Swift.Decodable, T4 : Swift.Decodable, T5 : Swift.Decodable
+  public func on<T1, T2, T3, T4, T5, T6>(method: Swift.String, callback: @escaping (_ arg1: T1, _ arg2: T2, _ arg3: T3, _ arg4: T4, _ arg5: T5, _ arg6: T6) -> Swift.Void) where T1 : Swift.Decodable, T2 : Swift.Decodable, T3 : Swift.Decodable, T4 : Swift.Decodable, T5 : Swift.Decodable, T6 : Swift.Decodable
+  public func on<T1, T2, T3, T4, T5, T6, T7>(method: Swift.String, callback: @escaping (_ arg1: T1, _ arg2: T2, _ arg3: T3, _ arg4: T4, _ arg5: T5, _ arg6: T6, _ arg7: T7) -> Swift.Void) where T1 : Swift.Decodable, T2 : Swift.Decodable, T3 : Swift.Decodable, T4 : Swift.Decodable, T5 : Swift.Decodable, T6 : Swift.Decodable, T7 : Swift.Decodable
+  public func on<T1, T2, T3, T4, T5, T6, T7, T8>(method: Swift.String, callback: @escaping (_ arg1: T1, _ arg2: T2, _ arg3: T3, _ arg4: T4, _ arg5: T5, _ arg6: T6, _ arg7: T7, _ arg8: T8) -> Swift.Void) where T1 : Swift.Decodable, T2 : Swift.Decodable, T3 : Swift.Decodable, T4 : Swift.Decodable, T5 : Swift.Decodable, T6 : Swift.Decodable, T7 : Swift.Decodable, T8 : Swift.Decodable
+  public func stream<TItemType>(method: Swift.String, streamItemReceived: @escaping (_ item: TItemType) -> Swift.Void, invocationDidComplete: @escaping (_ error: Swift.Error?) -> Swift.Void) -> AntourageViewer.StreamHandle where TItemType : Swift.Decodable
+  public func stream<T1, TItemType>(method: Swift.String, _ arg1: T1, streamItemReceived: @escaping (_ item: TItemType) -> Swift.Void, invocationDidComplete: @escaping (_ error: Swift.Error?) -> Swift.Void) -> AntourageViewer.StreamHandle where T1 : Swift.Encodable, TItemType : Swift.Decodable
+  public func stream<T1, T2, TItemType>(method: Swift.String, _ arg1: T1, _ arg2: T2, streamItemReceived: @escaping (_ item: TItemType) -> Swift.Void, invocationDidComplete: @escaping (_ error: Swift.Error?) -> Swift.Void) -> AntourageViewer.StreamHandle where T1 : Swift.Encodable, T2 : Swift.Encodable, TItemType : Swift.Decodable
+  public func stream<T1, T2, T3, TItemType>(method: Swift.String, _ arg1: T1, _ arg2: T2, _ arg3: T3, streamItemReceived: @escaping (_ item: TItemType) -> Swift.Void, invocationDidComplete: @escaping (_ error: Swift.Error?) -> Swift.Void) -> AntourageViewer.StreamHandle where T1 : Swift.Encodable, T2 : Swift.Encodable, T3 : Swift.Encodable, TItemType : Swift.Decodable
+  public func stream<T1, T2, T3, T4, TItemType>(method: Swift.String, _ arg1: T1, _ arg2: T2, _ arg3: T3, _ arg4: T4, streamItemReceived: @escaping (_ item: TItemType) -> Swift.Void, invocationDidComplete: @escaping (_ error: Swift.Error?) -> Swift.Void) -> AntourageViewer.StreamHandle where T1 : Swift.Encodable, T2 : Swift.Encodable, T3 : Swift.Encodable, T4 : Swift.Encodable, TItemType : Swift.Decodable
+  public func stream<T1, T2, T3, T4, T5, TItemType>(method: Swift.String, _ arg1: T1, _ arg2: T2, _ arg3: T3, _ arg4: T4, _ arg5: T5, streamItemReceived: @escaping (_ item: TItemType) -> Swift.Void, invocationDidComplete: @escaping (_ error: Swift.Error?) -> Swift.Void) -> AntourageViewer.StreamHandle where T1 : Swift.Encodable, T2 : Swift.Encodable, T3 : Swift.Encodable, T4 : Swift.Encodable, T5 : Swift.Encodable, TItemType : Swift.Decodable
+  public func stream<T1, T2, T3, T4, T5, T6, TItemType>(method: Swift.String, _ arg1: T1, _ arg2: T2, _ arg3: T3, _ arg4: T4, _ arg5: T5, _ arg6: T6, streamItemReceived: @escaping (_ item: TItemType) -> Swift.Void, invocationDidComplete: @escaping (_ error: Swift.Error?) -> Swift.Void) -> AntourageViewer.StreamHandle where T1 : Swift.Encodable, T2 : Swift.Encodable, T3 : Swift.Encodable, T4 : Swift.Encodable, T5 : Swift.Encodable, T6 : Swift.Encodable, TItemType : Swift.Decodable
+  public func stream<T1, T2, T3, T4, T5, T6, T7, TItemType>(method: Swift.String, _ arg1: T1, _ arg2: T2, _ arg3: T3, _ arg4: T4, _ arg5: T5, _ arg6: T6, _ arg7: T7, streamItemReceived: @escaping (_ item: TItemType) -> Swift.Void, invocationDidComplete: @escaping (_ error: Swift.Error?) -> Swift.Void) -> AntourageViewer.StreamHandle where T1 : Swift.Encodable, T2 : Swift.Encodable, T3 : Swift.Encodable, T4 : Swift.Encodable, T5 : Swift.Encodable, T6 : Swift.Encodable, T7 : Swift.Encodable, TItemType : Swift.Decodable
+  public func stream<T1, T2, T3, T4, T5, T6, T7, T8, TItemType>(method: Swift.String, _ arg1: T1, _ arg2: T2, _ arg3: T3, _ arg4: T4, _ arg5: T5, _ arg6: T6, _ arg7: T7, _ arg8: T8, streamItemReceived: @escaping (_ item: TItemType) -> Swift.Void, invocationDidComplete: @escaping (_ error: Swift.Error?) -> Swift.Void) -> AntourageViewer.StreamHandle where T1 : Swift.Encodable, T2 : Swift.Encodable, T3 : Swift.Encodable, T4 : Swift.Encodable, T5 : Swift.Encodable, T6 : Swift.Encodable, T7 : Swift.Encodable, T8 : Swift.Encodable, TItemType : Swift.Decodable
 }
 public protocol Content {
   var id: Swift.Int { get }
@@ -196,7 +196,7 @@ public struct TransportType : Swift.OptionSet {
 @_hasMissingDesignatedInitializers public class WebsocketsTransport : AntourageViewer.Transport {
   weak public var delegate: AntourageViewer.TransportDelegate?
   public func start(url: Foundation.URL, options: AntourageViewer.HttpConnectionOptions)
-  public func send(data: Foundation.Data, sendDidComplete: (Swift.Error?) -> Swift.Void)
+  public func send(data: Foundation.Data, sendDidComplete: (_ error: Swift.Error?) -> Swift.Void)
   public func close()
   @objc deinit
 }
@@ -212,10 +212,10 @@ public class JSONHubProtocol : AntourageViewer.HubProtocol {
 }
 public protocol HostChangeable : AnyObject {
 }
-extension HostChangeable where Self : UIKit.UIViewController {
+extension AntourageViewer.HostChangeable where Self : UIKit.UIViewController {
   public func presentChangeHostAlert()
 }
-extension MessageMO {
+extension AntourageViewer.MessageMO {
   @nonobjc public class func fetchRequest() -> CoreData.NSFetchRequest<AntourageViewer.MessageMO>
   @objc @NSManaged dynamic public var nickname: Swift.String {
     @objc get
@@ -260,7 +260,7 @@ public enum LogLevel : Swift.Int {
 public protocol Logger {
   func log(logLevel: AntourageViewer.LogLevel, message: @autoclosure () -> Swift.String)
 }
-extension LogLevel {
+extension AntourageViewer.LogLevel {
   public func toString() -> Swift.String
 }
 public class PrintLogger : AntourageViewer.Logger {
@@ -279,7 +279,7 @@ public enum ConnError : Swift.Error {
   case unauthorized
   case unknown(Swift.String)
 }
-extension ConnError : Foundation.LocalizedError {
+extension AntourageViewer.ConnError : Foundation.LocalizedError {
   public var errorDescription: Swift.String? {
     get
   }
@@ -487,7 +487,7 @@ public class CompletionMessage : AntourageViewer.HubMessage, Swift.Decodable {
   public static var shared: AntourageViewer.StorageManager
   @objc deinit
 }
-extension StorageManager {
+extension AntourageViewer.StorageManager {
   public func loadVideoContent(content: AntourageViewer.VideoContent) -> AntourageViewer.VideoContentMO
   public func loadStoptime(for videoContent: AntourageViewer.VideoContent) -> Swift.String
   public func saveStoptime(for videoContent: AntourageViewer.VideoContent, value: Swift.String)
@@ -495,7 +495,7 @@ extension StorageManager {
   public func saveChat(for videoContent: AntourageViewer.VideoContent, value: [AntourageViewer.Message])
   public func savePolls(for videoContent: AntourageViewer.VideoContent, value: [AntourageViewer.Poll])
 }
-extension VideoContentMO {
+extension AntourageViewer.VideoContentMO {
   @nonobjc public class func fetchRequest() -> CoreData.NSFetchRequest<AntourageViewer.VideoContentMO>
   @objc @NSManaged dynamic public var date: Foundation.Date {
     @objc get
@@ -533,13 +533,13 @@ extension VideoContentMO {
     get
   }
 }
-extension VideoContentMO {
+extension AntourageViewer.VideoContentMO {
   @objc(addMessagesMOObject:) @NSManaged dynamic public func addToMessagesMO(_ value: AntourageViewer.MessageMO)
   @objc(removeMessagesMOObject:) @NSManaged dynamic public func removeFromMessagesMO(_ value: AntourageViewer.MessageMO)
   @objc(addMessagesMO:) @NSManaged dynamic public func addToMessagesMO(_ values: Foundation.NSSet)
   @objc(removeMessagesMO:) @NSManaged dynamic public func removeFromMessagesMO(_ values: Foundation.NSSet)
 }
-extension VideoContentMO {
+extension AntourageViewer.VideoContentMO {
   @objc(addPollsMOObject:) @NSManaged dynamic public func addToPollsMO(_ value: AntourageViewer.PollMO)
   @objc(removePollsMOObject:) @NSManaged dynamic public func removeFromPollsMO(_ value: AntourageViewer.PollMO)
   @objc(addPollsMO:) @NSManaged dynamic public func addToPollsMO(_ values: Foundation.NSSet)
@@ -556,7 +556,7 @@ public enum ContentType : Swift.String, Swift.Codable {
     get
   }
 }
-extension PollMO {
+extension AntourageViewer.PollMO {
   @nonobjc public class func fetchRequest() -> CoreData.NSFetchRequest<AntourageViewer.PollMO>
   @objc @NSManaged dynamic public var key: Swift.String? {
     @objc get
@@ -590,7 +590,7 @@ public protocol HubConnectionDelegate : AnyObject {
   func connectionWillReconnect(error: Swift.Error)
   func connectionDidReconnect()
 }
-extension HubConnectionDelegate {
+extension AntourageViewer.HubConnectionDelegate {
   public func connectionWillReconnect(error: Swift.Error)
   public func connectionDidReconnect()
 }
@@ -618,7 +618,7 @@ public enum PlayerUnavailableActionReason {
   convenience public init(url: Foundation.URL, options: AntourageViewer.HttpConnectionOptions = HttpConnectionOptions(), logger: AntourageViewer.Logger = NullLogger())
   @objc deinit
   public func start()
-  public func send(data: Foundation.Data, sendDidComplete: @escaping (Swift.Error?) -> Swift.Void)
+  public func send(data: Foundation.Data, sendDidComplete: @escaping (_ error: Swift.Error?) -> Swift.Void)
   public func stop(stopError: Swift.Error? = nil)
 }
 @_hasMissingDesignatedInitializers public class ConnectionTransportDelegate : AntourageViewer.TransportDelegate {
@@ -630,14 +630,14 @@ public enum PlayerUnavailableActionReason {
 public protocol Transport : AnyObject {
   var delegate: AntourageViewer.TransportDelegate? { get set }
   func start(url: Foundation.URL, options: AntourageViewer.HttpConnectionOptions)
-  func send(data: Foundation.Data, sendDidComplete: @escaping (Swift.Error?) -> Swift.Void)
+  func send(data: Foundation.Data, sendDidComplete: @escaping (_ error: Swift.Error?) -> Swift.Void)
   func close()
 }
 public protocol Connection {
   var delegate: AntourageViewer.ConnectionDelegate? { get set }
   var connectionId: Swift.String? { get }
   func start()
-  func send(data: Foundation.Data, sendDidComplete: @escaping (Swift.Error?) -> Swift.Void)
+  func send(data: Foundation.Data, sendDidComplete: @escaping (_ error: Swift.Error?) -> Swift.Void)
   func stop(stopError: Swift.Error?)
 }
 public protocol FirebaseFetcher {
@@ -650,10 +650,10 @@ public struct ModernAVPlayerRemoteCommand : AntourageViewer.AVPlayerRemoteComman
   public let debugDescription: Swift.String
   public init(reference: MPRemoteCommand, debugDescription: Swift.String? = nil, isEnabled: @escaping (AntourageViewer.MediaType) -> Swift.Bool)
 }
-extension KeychainWrapper {
+extension AntourageViewer.KeychainWrapper {
   public func remove(forKey key: AntourageViewer.KeychainWrapper.Key)
 }
-extension KeychainWrapper {
+extension AntourageViewer.KeychainWrapper {
   public subscript(key: AntourageViewer.KeychainWrapper.Key) -> Swift.String? {
     get
     set
@@ -683,7 +683,7 @@ extension KeychainWrapper {
     set
   }
 }
-extension KeychainWrapper {
+extension AntourageViewer.KeychainWrapper {
   public func data(forKey key: AntourageViewer.KeychainWrapper.Key) -> Foundation.Data?
   public func bool(forKey key: AntourageViewer.KeychainWrapper.Key) -> Swift.Bool?
   public func integer(forKey key: AntourageViewer.KeychainWrapper.Key) -> Swift.Int?
@@ -692,7 +692,7 @@ extension KeychainWrapper {
   public func double(forKey key: AntourageViewer.KeychainWrapper.Key) -> Swift.Double?
   public func string(forKey key: AntourageViewer.KeychainWrapper.Key) -> Swift.String?
 }
-extension KeychainWrapper {
+extension AntourageViewer.KeychainWrapper {
   public struct Key : Swift.Hashable, Swift.RawRepresentable, Swift.ExpressibleByStringLiteral {
     public var rawValue: Swift.String
     public init(rawValue: Swift.String)
@@ -777,12 +777,12 @@ public class HubConnection {
   @objc deinit
   public func start()
   public func stop()
-  public func on(method: Swift.String, callback: @escaping (AntourageViewer.ArgumentExtractor) throws -> Swift.Void)
-  public func send(method: Swift.String, arguments: [Swift.Encodable], sendDidComplete: @escaping (Swift.Error?) -> Swift.Void)
-  public func invoke(method: Swift.String, arguments: [Swift.Encodable], invocationDidComplete: @escaping (Swift.Error?) -> Swift.Void)
-  public func invoke<T>(method: Swift.String, arguments: [Swift.Encodable], resultType: T.Type, invocationDidComplete: @escaping (T?, Swift.Error?) -> Swift.Void) where T : Swift.Decodable
-  public func stream<T>(method: Swift.String, arguments: [Swift.Encodable], streamItemReceived: @escaping (T) -> Swift.Void, invocationDidComplete: @escaping (Swift.Error?) -> Swift.Void) -> AntourageViewer.StreamHandle where T : Swift.Decodable
-  public func cancelStreamInvocation(streamHandle: AntourageViewer.StreamHandle, cancelDidFail: @escaping (Swift.Error) -> Swift.Void)
+  public func on(method: Swift.String, callback: @escaping (_ argumentExtractor: AntourageViewer.ArgumentExtractor) throws -> Swift.Void)
+  public func send(method: Swift.String, arguments: [Swift.Encodable], sendDidComplete: @escaping (_ error: Swift.Error?) -> Swift.Void)
+  public func invoke(method: Swift.String, arguments: [Swift.Encodable], invocationDidComplete: @escaping (_ error: Swift.Error?) -> Swift.Void)
+  public func invoke<T>(method: Swift.String, arguments: [Swift.Encodable], resultType: T.Type, invocationDidComplete: @escaping (_ result: T?, _ error: Swift.Error?) -> Swift.Void) where T : Swift.Decodable
+  public func stream<T>(method: Swift.String, arguments: [Swift.Encodable], streamItemReceived: @escaping (_ item: T) -> Swift.Void, invocationDidComplete: @escaping (_ error: Swift.Error?) -> Swift.Void) -> AntourageViewer.StreamHandle where T : Swift.Decodable
+  public func cancelStreamInvocation(streamHandle: AntourageViewer.StreamHandle, cancelDidFail: @escaping (_ error: Swift.Error) -> Swift.Void)
 }
 @_hasMissingDesignatedInitializers public class ArgumentExtractor {
   public func getArgument<T>(type: T.Type) throws -> T where T : Swift.Decodable
@@ -854,7 +854,7 @@ public protocol PlayerPlugin {
   func didFailed(media: AntourageViewer.PlayerMedia, error: AntourageViewer.PlayerError)
   func didItemPlayToEndTime(media: AntourageViewer.PlayerMedia, endTime: Swift.Double)
 }
-extension PlayerPlugin {
+extension AntourageViewer.PlayerPlugin {
   public func didInit(player: AVFoundation.AVPlayer)
   public func willStartLoading(media: AntourageViewer.PlayerMedia)
   public func didStartLoading(media: AntourageViewer.PlayerMedia)
@@ -869,13 +869,13 @@ extension PlayerPlugin {
   public func didFailed(media: AntourageViewer.PlayerMedia, error: AntourageViewer.PlayerError)
   public func didItemPlayToEndTime(media: AntourageViewer.PlayerMedia, endTime: Swift.Double)
 }
-@objc @_inheritsConvenienceInitializers @IBDesignable public class GradientView : UIKit.UIView {
-  @objc override dynamic public class var layerClass: Swift.AnyClass {
-    @objc get
+@objc @_inheritsConvenienceInitializers @IBDesignable @_Concurrency.MainActor(unsafe) public class GradientView : UIKit.UIView {
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public class var layerClass: Swift.AnyClass {
+    @_Concurrency.MainActor(unsafe) @objc get
   }
-  @objc override dynamic public func layoutSubviews()
-  @objc override dynamic public init(frame: CoreGraphics.CGRect)
-  @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func layoutSubviews()
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreGraphics.CGRect)
+  @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
   @objc deinit
 }
 public enum ReachabilityError : Swift.Error {
@@ -887,7 +887,7 @@ public enum ReachabilityError : Swift.Error {
 }
 @available(*, unavailable, renamed: "Notification.Name.reachabilityChanged")
 public let ReachabilityChangedNotification: Foundation.NSNotification.Name
-extension NSNotification.Name {
+extension Foundation.NSNotification.Name {
   public static let reachabilityChanged: Foundation.Notification.Name
 }
 public class Reachability {
@@ -928,7 +928,7 @@ public class Reachability {
   convenience public init(queueQoS: Dispatch.DispatchQoS = .default, targetQueue: Dispatch.DispatchQueue? = nil, notificationQueue: Dispatch.DispatchQueue? = .main) throws
   @objc deinit
 }
-extension Reachability {
+extension AntourageViewer.Reachability {
   public func startNotifier() throws
   public func stopNotifier()
   @available(*, deprecated, message: "Please use `connection != .none`")
@@ -955,7 +955,7 @@ public protocol ModernAVPlayerDelegate : AnyObject {
   func modernAVPlayer(_ player: AntourageViewer.ModernAVPlayer, unavailableActionReason: AntourageViewer.PlayerUnavailableActionReason)
   func modernAVPlayer(_ player: AntourageViewer.ModernAVPlayer, didItemPlayToEndTime endTime: Swift.Double)
 }
-extension ModernAVPlayerDelegate {
+extension AntourageViewer.ModernAVPlayerDelegate {
   public func modernAVPlayer(_ player: AntourageViewer.ModernAVPlayer, didStateChange state: AntourageViewer.ModernAVPlayer.State)
   public func modernAVPlayer(_ player: AntourageViewer.ModernAVPlayer, didCurrentMediaChange media: AntourageViewer.PlayerMedia?)
   public func modernAVPlayer(_ player: AntourageViewer.ModernAVPlayer, didCurrentTimeChange currentTime: Swift.Double)
@@ -1010,46 +1010,46 @@ public protocol Poll {
   func updateUserID(_ userID: Swift.String?)
   func saveAnswer(index: Swift.Int, userID: Swift.String)
 }
-@objc @_inheritsConvenienceInitializers open class IQTextView : UIKit.UITextView {
-  @objc required dynamic public init?(coder aDecoder: Foundation.NSCoder)
-  @objc override dynamic public init(frame: CoreGraphics.CGRect, textContainer: UIKit.NSTextContainer?)
+@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) open class IQTextView : UIKit.UITextView {
+  @objc @_Concurrency.MainActor(unsafe) required dynamic public init?(coder aDecoder: Foundation.NSCoder)
+  @objc @_Concurrency.MainActor(unsafe) override dynamic public init(frame: CoreGraphics.CGRect, textContainer: UIKit.NSTextContainer?)
   @objc override dynamic open func awakeFromNib()
   @objc deinit
-  @objc @IBInspectable open var placeholderTextColor: UIKit.UIColor? {
+  @objc @IBInspectable @_Concurrency.MainActor(unsafe) open var placeholderTextColor: UIKit.UIColor? {
     @objc get
     @objc set
   }
-  @objc @IBInspectable open var placeholder: Swift.String? {
+  @objc @IBInspectable @_Concurrency.MainActor(unsafe) open var placeholder: Swift.String? {
     @objc get
     @objc set
   }
-  open var attributedPlaceholder: Foundation.NSAttributedString? {
+  @_Concurrency.MainActor(unsafe) open var attributedPlaceholder: Foundation.NSAttributedString? {
     get
     set
   }
-  @objc override dynamic open func layoutSubviews()
-  @objc override dynamic open var text: Swift.String! {
-    @objc get
-    @objc set
+  @objc @_Concurrency.MainActor(unsafe) override dynamic open func layoutSubviews()
+  @objc @_Concurrency.MainActor(unsafe) override dynamic open var text: Swift.String! {
+    @_Concurrency.MainActor(unsafe) @objc get
+    @_Concurrency.MainActor(unsafe) @objc set
   }
-  @objc override dynamic open var attributedText: Foundation.NSAttributedString! {
-    @objc get
-    @objc set
+  @_Concurrency.MainActor(unsafe) @objc override dynamic open var attributedText: Foundation.NSAttributedString! {
+    @_Concurrency.MainActor(unsafe) @objc get
+    @_Concurrency.MainActor(unsafe) @objc set
   }
-  @objc override dynamic open var font: UIKit.UIFont? {
-    @objc get
-    @objc set
+  @objc @_Concurrency.MainActor(unsafe) override dynamic open var font: UIKit.UIFont? {
+    @_Concurrency.MainActor(unsafe) @objc get
+    @_Concurrency.MainActor(unsafe) @objc set
   }
-  @objc override dynamic open var textAlignment: UIKit.NSTextAlignment {
-    @objc get
-    @objc set
+  @objc @_Concurrency.MainActor(unsafe) override dynamic open var textAlignment: UIKit.NSTextAlignment {
+    @_Concurrency.MainActor(unsafe) @objc get
+    @_Concurrency.MainActor(unsafe) @objc set
   }
-  @objc override dynamic open var delegate: UIKit.UITextViewDelegate? {
-    @objc get
-    @objc set
+  @objc @_Concurrency.MainActor(unsafe) override dynamic open var delegate: UIKit.UITextViewDelegate? {
+    @_Concurrency.MainActor(unsafe) @objc get
+    @_Concurrency.MainActor(unsafe) @objc set
   }
-  @objc override dynamic open var intrinsicContentSize: CoreGraphics.CGSize {
-    @objc get
+  @objc @_Concurrency.MainActor(unsafe) override dynamic open var intrinsicContentSize: CoreGraphics.CGSize {
+    @_Concurrency.MainActor(unsafe) @objc get
   }
 }
 public class HttpConnectionOptions {
@@ -1096,7 +1096,7 @@ public protocol ConnectionDelegate : AnyObject {
   func connectionWillReconnect(error: Swift.Error)
   func connectionDidReconnect()
 }
-extension ConnectionDelegate {
+extension AntourageViewer.ConnectionDelegate {
   public func connectionWillReconnect(error: Swift.Error)
   public func connectionDidReconnect()
 }
@@ -1135,22 +1135,22 @@ public protocol PlayerMedia : Swift.CustomStringConvertible {
   func getMetadata() -> AntourageViewer.PlayerMediaMetadata?
   func setMetadata(_ metadata: AntourageViewer.PlayerMediaMetadata?)
 }
-extension PlayerMedia {
+extension AntourageViewer.PlayerMedia {
   public var description: Swift.String {
     get
   }
 }
-extension PlayerMedia {
+extension AntourageViewer.PlayerMedia {
   public func isLive() -> Swift.Bool
 }
 @_hasMissingDesignatedInitializers public class HttpResponse {
   @objc deinit
 }
-@objc @_inheritsConvenienceInitializers public class FooterView : UIKit.UICollectionReusableView {
+@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) public class FooterView : UIKit.UICollectionReusableView {
   @objc override dynamic public func awakeFromNib()
-  @objc override dynamic public func layoutSubviews()
-  @objc override dynamic public init(frame: CoreGraphics.CGRect)
-  @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func layoutSubviews()
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreGraphics.CGRect)
+  @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
   @objc deinit
 }
 @objc final public class ModernAVPlayer : ObjectiveC.NSObject, AntourageViewer.ModernAVPlayerExposable {
@@ -1183,10 +1183,9 @@ extension PlayerMedia {
   final public func load(media: AntourageViewer.PlayerMedia, autostart: Swift.Bool, position: Swift.Double? = nil)
   final public func updateMetadata(_ metadata: AntourageViewer.PlayerMediaMetadata?)
   final public func play()
-  @objc override dynamic public init()
   @objc deinit
 }
-extension ModernAVPlayer {
+extension AntourageViewer.ModernAVPlayer {
   public enum State : Swift.String, Swift.CustomStringConvertible {
     case buffering
     case failed
@@ -1212,12 +1211,12 @@ public protocol FirebaseCreator {
   func createChat(videoContent: AntourageViewer.VideoContent, path: Swift.String) -> AntourageViewer.Chat
   func createMessageFetcher(path: Swift.String) -> AntourageViewer.FirebaseFetcher
 }
-extension UIView {
-  public func badge(text badgeText: Swift.String?, badgeEdgeInsets: UIKit.UIEdgeInsets? = nil, appearance: AntourageViewer.BadgeAppearance = BadgeAppearance())
+extension UIKit.UIView {
+  @_Concurrency.MainActor(unsafe) public func badge(text badgeText: Swift.String?, badgeEdgeInsets: UIKit.UIEdgeInsets? = nil, appearance: AntourageViewer.BadgeAppearance = BadgeAppearance())
 }
-extension UIBarButtonItem {
-  @objc dynamic public func badge(text: Swift.String?)
-  public func badge(text badgeText: Swift.String?, appearance: AntourageViewer.BadgeAppearance = BadgeAppearance())
+extension UIKit.UIBarButtonItem {
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func badge(text: Swift.String?)
+  @_Concurrency.MainActor(unsafe) public func badge(text badgeText: Swift.String?, appearance: AntourageViewer.BadgeAppearance = BadgeAppearance())
 }
 public struct BadgeAppearance {
   public var font: UIKit.UIFont
@@ -1271,14 +1270,14 @@ public protocol PollManager {
   func observePolls(userID: Swift.String?, completion: @escaping ((AntourageViewer.Poll?) -> ()))
   func removeFirebaseObserver()
 }
-extension UIImage : Foundation.NSDiscardableContent {
+extension UIKit.UIImage : Foundation.NSDiscardableContent {
   @objc dynamic public func beginContentAccess() -> Swift.Bool
   @objc dynamic public func endContentAccess()
   @objc dynamic public func discardContentIfPossible()
   @objc dynamic public func isContentDiscarded() -> Swift.Bool
 }
-@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class EmptyDataSourceView : UIKit.UIView {
-  @objc override dynamic public init(frame: CoreGraphics.CGRect)
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) public class EmptyDataSourceView : UIKit.UIView {
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreGraphics.CGRect)
   @objc deinit
 }
 public struct RetryContext {
@@ -1305,7 +1304,7 @@ public protocol PlayerMediaMetadata : Swift.CustomStringConvertible {
   var image: Foundation.Data? { get }
   var remoteImageUrl: Foundation.URL? { get }
 }
-extension PlayerMediaMetadata {
+extension AntourageViewer.PlayerMediaMetadata {
   public var description: Swift.String {
     get
   }
@@ -1334,14 +1333,14 @@ extension PlayerMediaMetadata {
   public static func objc_registerNotifications(FCMToken: Swift.String, completionHandler: @escaping (Swift.String?, Swift.Error?) -> Swift.Void)
   final public func showFeed(animated: Swift.Bool = false, backButtonHidden: Swift.Bool = false)
 }
-extension AntWidget : AntourageViewer.ModernAVPlayerDelegate {
+extension AntourageViewer.AntWidget : AntourageViewer.ModernAVPlayerDelegate {
   final public func modernAVPlayer(_ player: AntourageViewer.ModernAVPlayer, didStateChange state: AntourageViewer.ModernAVPlayer.State)
   final public func modernAVPlayer(_ player: AntourageViewer.ModernAVPlayer, didItemDurationChange itemDuration: Swift.Double?)
 }
 public class HubConnectionBuilder {
   public init(url: Foundation.URL)
   public func withHubProtocol(hubProtocolFactory: @escaping (AntourageViewer.Logger) -> AntourageViewer.HubProtocol) -> AntourageViewer.HubConnectionBuilder
-  public func withHttpConnectionOptions(configureHttpOptions: (AntourageViewer.HttpConnectionOptions) -> Swift.Void) -> AntourageViewer.HubConnectionBuilder
+  public func withHttpConnectionOptions(configureHttpOptions: (_ httpConnectionOptions: AntourageViewer.HttpConnectionOptions) -> Swift.Void) -> AntourageViewer.HubConnectionBuilder
   public func withLogging(minLogLevel: AntourageViewer.LogLevel) -> AntourageViewer.HubConnectionBuilder
   public func withLogging(logger: AntourageViewer.Logger) -> AntourageViewer.HubConnectionBuilder
   public func withLogging(minLogLevel: AntourageViewer.LogLevel, logger: AntourageViewer.Logger) -> AntourageViewer.HubConnectionBuilder
@@ -1353,7 +1352,7 @@ public class HubConnectionBuilder {
   public func build() -> AntourageViewer.HubConnection
   @objc deinit
 }
-extension HubConnectionBuilder {
+extension AntourageViewer.HubConnectionBuilder {
   public func withJSONHubProtocol() -> AntourageViewer.HubConnectionBuilder
 }
 public class ModernAVPlayerMediaItem : AntourageViewer.PlayerMediaItem {
@@ -1376,11 +1375,11 @@ public protocol MediaPlayer : AnyObject, AntourageViewer.PlayerCommand {
 }
 public struct WebSocketEvents {
   public var open: () -> ()
-  public var close: (Swift.Int, Swift.String, Swift.Bool) -> ()
-  public var error: (Swift.Error) -> ()
-  public var message: (Any) -> ()
-  public var pong: (Any) -> ()
-  public var end: (Swift.Int, Swift.String, Swift.Bool, Swift.Error?) -> ()
+  public var close: (_ code: Swift.Int, _ reason: Swift.String, _ wasClean: Swift.Bool) -> ()
+  public var error: (_ error: Swift.Error) -> ()
+  public var message: (_ data: Any) -> ()
+  public var pong: (_ data: Any) -> ()
+  public var end: (_ code: Swift.Int, _ reason: Swift.String, _ wasClean: Swift.Bool, _ error: Swift.Error?) -> ()
 }
 public enum WebSocketBinaryType : Swift.CustomStringConvertible {
   case uInt8Array
@@ -1526,7 +1525,7 @@ public enum WebSocketError : Swift.Error, Swift.CustomStringConvertible {
   @objc deinit
 }
 public func == (lhs: AntourageViewer.WebSocket, rhs: AntourageViewer.WebSocket) -> Swift.Bool
-extension WebSocket {
+extension AntourageViewer.WebSocket {
   @objc dynamic public var delegate: AntourageViewer.WebSocketDelegate? {
     @objc get
     @objc set
