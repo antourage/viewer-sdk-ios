@@ -4,539 +4,132 @@
 <dict>
 	<key>files</key>
 	<dict>
-		<key>AntViewerLocalization_en.stringsdict</key>
-		<data>
-		+ld7+OIloj+Xt7AXe6X8R/vYc8w=
-		</data>
-		<key>AntViewerLocalization_sv.strings</key>
-		<data>
-		AuODp+ZCMtXGYwL/OStQja38q5w=
-		</data>
-		<key>AntViewerLocalization_sv.stringsdict</key>
-		<data>
-		PbBMvBDvmUXM4GyzgzVcQqcUhGw=
-		</data>
-		<key>AntViewerModel.momd/AntViewerModel.mom</key>
-		<data>
-		sSdsPqLu2bA2cZP9QySwkxm8eyg=
-		</data>
-		<key>AntViewerModel.momd/VersionInfo.plist</key>
-		<data>
-		PaiQAHd9GYphqL0ZGOoRZUYjwkU=
-		</data>
 		<key>Assets.car</key>
 		<data>
-		ICmY/ZxraXpWCrGQ0JLNNddtPQY=
+		b1P920RGbfLRVLFI2DQuB13ZRLE=
 		</data>
-		<key>ChatViewController.nib</key>
+		<key>Headers/Antourage.h</key>
 		<data>
-		WVcnQMcPWjEx0mqCPDe067h4FCQ=
-		</data>
-		<key>EmptyDataSourceView.nib</key>
-		<data>
-		5xGur43FtPzX2TyUpIU6FuStw/M=
-		</data>
-		<key>FooterView.nib/objects-13.0+.nib</key>
-		<data>
-		JqKj3cdV5eJKI8om2QhUODLV/I8=
-		</data>
-		<key>FooterView.nib/runtime.nib</key>
-		<data>
-		k47A0jaMt8aSQ4wbo1xuYua/Zv0=
-		</data>
-		<key>GoogleService-Info.plist</key>
-		<data>
-		2a9gw8RuqT7qn2BzH0hCBuJZMk8=
+		lUgPcxSIA9EDcMrUZl7Ped1ybSw=
 		</data>
 		<key>Headers/AntourageViewer-Swift.h</key>
 		<data>
-		WGYIU38OysE7e3g2wmsaf/rjxdw=
-		</data>
-		<key>Headers/AntourageViewer.h</key>
-		<data>
-		cb7rCQXNJ0UfZs//U72/dg6YQFA=
+		gG7K45qN1L5LcLN8sLbrnwBEQCY=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		Ik0Ry5pEgFDk6fmWjB4EzaKkkTs=
-		</data>
-		<key>LeftMessageCell.nib/objects-13.0+.nib</key>
-		<data>
-		Gjk4zp571lVaYti0WktWXTLQf4g=
-		</data>
-		<key>LeftMessageCell.nib/runtime.nib</key>
-		<data>
-		4L4VlcBaJ+hs2foMsT20Uw7eJd0=
-		</data>
-		<key>MessageView.nib</key>
-		<data>
-		mjK/x9pkvzHY06mRNrPUC8PlEIM=
+		Kl2drVhPVc+URNj0M5OK2FfBQuw=
 		</data>
 		<key>Modules/AntourageViewer.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		wfu2dL3kGJexlstaFHEBIDm9kWc=
+		/CEZA7qbr84WMXCKNuJWUks5KQs=
 		</data>
 		<key>Modules/AntourageViewer.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		+qyK01g7voMXZ1ttatKG1o/Eghc=
+		s5U/hGZOzLS5TVIBvfPMAjcKOqA=
 		</data>
 		<key>Modules/AntourageViewer.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		j8ZwRJxt77gDdFsUXmF088VopMk=
-		</data>
-		<key>Modules/AntourageViewer.swiftmodule/arm64.swiftdoc</key>
-		<data>
-		wfu2dL3kGJexlstaFHEBIDm9kWc=
-		</data>
-		<key>Modules/AntourageViewer.swiftmodule/arm64.swiftinterface</key>
-		<data>
-		+qyK01g7voMXZ1ttatKG1o/Eghc=
-		</data>
-		<key>Modules/AntourageViewer.swiftmodule/arm64.swiftmodule</key>
-		<data>
-		j8ZwRJxt77gDdFsUXmF088VopMk=
+		lhHZrB6+HbKTX4d7a7Sn66luOzA=
 		</data>
 		<key>Modules/AntourageViewer.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		oAHSmuCc9T7aStmM/bJex6g6vgI=
+		s7W24pfhIH34kHVO84fW+i3mCWA=
 		</data>
 		<key>Modules/AntourageViewer.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		WxP4+6Wh4w+0yivr6WCjnfs7XG4=
+		IqzM9HI2xK9b18su3c6tT+/Bv5w=
 		</data>
 		<key>Modules/AntourageViewer.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		lFZRMR0bNNv99hVIGdBCgKHhOfw=
-		</data>
-		<key>Modules/AntourageViewer.swiftmodule/x86_64.swiftdoc</key>
-		<data>
-		oAHSmuCc9T7aStmM/bJex6g6vgI=
-		</data>
-		<key>Modules/AntourageViewer.swiftmodule/x86_64.swiftinterface</key>
-		<data>
-		WxP4+6Wh4w+0yivr6WCjnfs7XG4=
-		</data>
-		<key>Modules/AntourageViewer.swiftmodule/x86_64.swiftmodule</key>
-		<data>
-		lFZRMR0bNNv99hVIGdBCgKHhOfw=
+		zuMsKIRLurim2SN9P6wrAUoQQDU=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
-		qQz0LmD/PZUS/oLSJk974ZXNRNk=
+		3zR0FMjKvOKUixzguzHgMbt7bMg=
 		</data>
-		<key>PlayerController.nib/objects-13.0+.nib</key>
+		<key>Poppins-SemiBold.ttf</key>
 		<data>
-		qumzUTLvJEDb8+MImJymLC/UZqY=
-		</data>
-		<key>PlayerController.nib/runtime.nib</key>
-		<data>
-		BwWLFq5dajuumt+xV0DNNMp/gdU=
-		</data>
-		<key>PollController.nib/objects-13.0+.nib</key>
-		<data>
-		f/yz3LUfjP1ImHu3CkHCCTeChJk=
-		</data>
-		<key>PollController.nib/runtime.nib</key>
-		<data>
-		UWLpcCeiuCjXp+Blwt1gypu8XTE=
-		</data>
-		<key>PollTableViewCell.nib/objects-13.0+.nib</key>
-		<data>
-		xJJQX2i+1AHXO+fAiM0Gxc6o7Hw=
-		</data>
-		<key>PollTableViewCell.nib/runtime.nib</key>
-		<data>
-		KFldXZOoboSpq9OCI0jVnSV3vTg=
-		</data>
-		<key>PostCell.nib/objects-12.3+.nib</key>
-		<data>
-		BzLUDy4tEqJpo6wCG2FmYXhugLs=
-		</data>
-		<key>PostCell.nib/objects-13.0+.nib</key>
-		<data>
-		jIWGAtfkEuLkiCVpbtaje2eubD0=
-		</data>
-		<key>PostCell.nib/runtime.nib</key>
-		<data>
-		57xTDndfiOy5VYLe4Opzj5f0zqs=
-		</data>
-		<key>RightMessageCell.nib/objects-13.0+.nib</key>
-		<data>
-		7v1K7UysDS1Pbs1iuBZoqqIX+yc=
-		</data>
-		<key>RightMessageCell.nib/runtime.nib</key>
-		<data>
-		q8PbJRwDjxiNQr49yPXzNjOC19k=
-		</data>
-		<key>SkeletonCell.nib/objects-12.3+.nib</key>
-		<data>
-		0y3nR9fA02f0ngbBGem1mAlYlYg=
-		</data>
-		<key>SkeletonCell.nib/runtime.nib</key>
-		<data>
-		27FhXb8CoUx4+QWdHZPNPA7qjx8=
-		</data>
-		<key>SponsoredBannerCell.nib</key>
-		<data>
-		o7YE1r9roHWWs+PRGD/AarVohd8=
-		</data>
-		<key>StreamCell.nib/objects-12.3+.nib</key>
-		<data>
-		mv+qukHi3qzfN0NfkoVsZeA9GUY=
-		</data>
-		<key>StreamCell.nib/objects-13.0+.nib</key>
-		<data>
-		ZEbilsUMPjToQolkqXiVvUNIs+8=
-		</data>
-		<key>StreamCell.nib/runtime.nib</key>
-		<data>
-		Yt3p5JfJ4NzaqRr1F7MuZJJbPJA=
-		</data>
-		<key>StreamListController.nib/objects-13.0+.nib</key>
-		<data>
-		c7k1oakWCKxuK+xkQ/Xm0R8rYhU=
-		</data>
-		<key>StreamListController.nib/runtime.nib</key>
-		<data>
-		Z6okx4Lr6Y4wjRX4qcvz9xvHRLM=
+		ikrOk5LQa8t/jqL1FpsH5MODqQ0=
 		</data>
 	</dict>
 	<key>files2</key>
 	<dict>
-		<key>AntViewerLocalization_en.stringsdict</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			rKb6OBfoD73G08fqZt8ZvKFtoEt2qpuXGAV+bCoB400=
-			</data>
-		</dict>
-		<key>AntViewerLocalization_sv.strings</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			J0rNH4U82N3nDsluPRBL0U9jSyVDhh6PEEPgxONXrzo=
-			</data>
-		</dict>
-		<key>AntViewerLocalization_sv.stringsdict</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			kDjm0UNr16Nnp9yKxt2z2R2pIymeUooHQKWfy3FWRZc=
-			</data>
-		</dict>
-		<key>AntViewerModel.momd/AntViewerModel.mom</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			wz2Wk/4NjqQH4ZI32qNO5MoZMG+3FVYThcBqRr6k+IQ=
-			</data>
-		</dict>
-		<key>AntViewerModel.momd/VersionInfo.plist</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			NUkW0KVCxQ+2TwNCHRFw0flOjxJLLIhCMLslbZWTXYo=
-			</data>
-		</dict>
 		<key>Assets.car</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			4oRX19dl13cKz+EIVni20ac98LMIimjnd1kqIEUTMIc=
+			FKiEFjqKd/oxURzf2cVcidZ20glhM5w2Kn6dgfhWEwA=
 			</data>
 		</dict>
-		<key>ChatViewController.nib</key>
+		<key>Headers/Antourage.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			fe1ksbFVVvY7OnSojQWdEfp77e2ElJyVGZKN19jTdSA=
-			</data>
-		</dict>
-		<key>EmptyDataSourceView.nib</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			r5PPVTEra1V66WgE1aVmEp7Bl31PcKj6kLwwmCjZFWc=
-			</data>
-		</dict>
-		<key>FooterView.nib/objects-13.0+.nib</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			m0ZeBE0N7eqfmO3VMwApEzvCrt0JePQUMReHtWEKjqg=
-			</data>
-		</dict>
-		<key>FooterView.nib/runtime.nib</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			XMXhCGzXAyPUyyvb+AWM1YlJGyTamgYQ8p/L56OCC10=
-			</data>
-		</dict>
-		<key>GoogleService-Info.plist</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			3Q0/qpsqlsY5g2JmVngIwFgqv5i9rofNZvLifwWJf2g=
+			SCZwiCHlhfHMewDgaPDZjLx0w/DcvC6bt+DZfO9+1+E=
 			</data>
 		</dict>
 		<key>Headers/AntourageViewer-Swift.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Oy8mENNgbQetw7MtgOOBSmrE7Symvnx5vZaFTvpxVV0=
-			</data>
-		</dict>
-		<key>Headers/AntourageViewer.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			MqWr2xu5jODf3s2lClxY3aAC/04NMK1kLj/2qcH8cTo=
-			</data>
-		</dict>
-		<key>LeftMessageCell.nib/objects-13.0+.nib</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			ivMNr5XY/c0ODwGCE08LuZeWJLCILZic5GzyWOmnjIA=
-			</data>
-		</dict>
-		<key>LeftMessageCell.nib/runtime.nib</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			YN8BwXoQO6QTFM1Q703DOgvohULm/iq8izvQPLazm08=
-			</data>
-		</dict>
-		<key>MessageView.nib</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			TB21FgNq6XpYiiI+eMDg/prl4y8ux5z34lTjwZEU/Cw=
+			l6v72VHfNxHw4sR/ke4OQnKNzWmyrSBRDORYIbzuYN4=
 			</data>
 		</dict>
 		<key>Modules/AntourageViewer.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			urMBeQp+wHmZI21S0tlKkWBmWp+bavtmbuT2p7F0dBg=
+			E2cja8Lg1KQa2BNjplCe+2YDyuADtDwptN28K4wDrGM=
 			</data>
 		</dict>
 		<key>Modules/AntourageViewer.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			8n5hc93cxwoOAWukMXoXiN53Hjx2p5+iFwBDAVgYMQM=
+			9Fq1it9jyXyQzKw1wsU8DTWrppHpCxfaoIjYeD1CIdg=
 			</data>
 		</dict>
 		<key>Modules/AntourageViewer.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			5p+mHs1pWLqqM+ShW8D325DLD+uE8482RTgBVUt3tvc=
-			</data>
-		</dict>
-		<key>Modules/AntourageViewer.swiftmodule/arm64.swiftdoc</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			urMBeQp+wHmZI21S0tlKkWBmWp+bavtmbuT2p7F0dBg=
-			</data>
-		</dict>
-		<key>Modules/AntourageViewer.swiftmodule/arm64.swiftinterface</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			8n5hc93cxwoOAWukMXoXiN53Hjx2p5+iFwBDAVgYMQM=
-			</data>
-		</dict>
-		<key>Modules/AntourageViewer.swiftmodule/arm64.swiftmodule</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			5p+mHs1pWLqqM+ShW8D325DLD+uE8482RTgBVUt3tvc=
+			Gcx5bhkyVPvB7yDlReGk4ClAfMKEG4cVpzob9QopW04=
 			</data>
 		</dict>
 		<key>Modules/AntourageViewer.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			z2aMydW8+b1SJO0v1KVrqlFbK/iDPxLbeyxa91YUljw=
+			+7qZ9iBEpPXExQOeS088Wwkulr41Ka9oz5z66nM2RxM=
 			</data>
 		</dict>
 		<key>Modules/AntourageViewer.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			wnjWp1uqbnFkPzGWmV97NKJccU4JM3ugJT0MKqMY0B4=
+			UqZh77IGlPORFv+nIbgiJVyYuiyER5YtmyHabFh4/8Q=
 			</data>
 		</dict>
 		<key>Modules/AntourageViewer.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			WjhWnHCHCQ/2noDvapYWG8tOCtuvk39ItsJi8QR6AVE=
-			</data>
-		</dict>
-		<key>Modules/AntourageViewer.swiftmodule/x86_64.swiftdoc</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			z2aMydW8+b1SJO0v1KVrqlFbK/iDPxLbeyxa91YUljw=
-			</data>
-		</dict>
-		<key>Modules/AntourageViewer.swiftmodule/x86_64.swiftinterface</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			wnjWp1uqbnFkPzGWmV97NKJccU4JM3ugJT0MKqMY0B4=
-			</data>
-		</dict>
-		<key>Modules/AntourageViewer.swiftmodule/x86_64.swiftmodule</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			WjhWnHCHCQ/2noDvapYWG8tOCtuvk39ItsJi8QR6AVE=
+			QamEgvkmCI7gtb/TdiGM3i+6x6P/+eSo1FbaCe7b1pI=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			R6TEN2sda0YggPdKusTduPlk0U46sob5sZ3cE0tcWkA=
+			Hcdk1KZz8K1z7GMTh8Pf9htQUm0xj620Mcmu5LOPWAc=
 			</data>
 		</dict>
-		<key>PlayerController.nib/objects-13.0+.nib</key>
+		<key>Poppins-SemiBold.ttf</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			SEV+YHUjKum27N2witrUNL99wpQfGUACdw5pnOar5Jo=
-			</data>
-		</dict>
-		<key>PlayerController.nib/runtime.nib</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			aRV1bY459bWFDLN0sFl9Glg0vaHXOQ2OmATk7dDOsmA=
-			</data>
-		</dict>
-		<key>PollController.nib/objects-13.0+.nib</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			BTHiy1UDDzi16wPTlmN2tYAIiT1+vlLHdBAL1xgj9uI=
-			</data>
-		</dict>
-		<key>PollController.nib/runtime.nib</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			CTF/kSIpygkJ1RZZaIKhHgOVZDqHzKLxDy25YrSpJhg=
-			</data>
-		</dict>
-		<key>PollTableViewCell.nib/objects-13.0+.nib</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			L531dWZsFQ91ZyIB9m7v9vn/dcZHLvnrUPW7GVRP+TQ=
-			</data>
-		</dict>
-		<key>PollTableViewCell.nib/runtime.nib</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			coPXu4sk42Ur/d9O2ajOREUxE3b9PTriKu8Pb/ll5J0=
-			</data>
-		</dict>
-		<key>PostCell.nib/objects-12.3+.nib</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			+MrquhgsSvSSF9C+pndWqXACH1I2r6AagHk/Tti8bMY=
-			</data>
-		</dict>
-		<key>PostCell.nib/objects-13.0+.nib</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			skMkfTCJzhE4My2DF8R7zRDrkU174Qbtaql60qJlkFI=
-			</data>
-		</dict>
-		<key>PostCell.nib/runtime.nib</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			lAVI3ImJ19QDf7MsRPSQwu5fOK3c5I3+H6D3dPf1sio=
-			</data>
-		</dict>
-		<key>RightMessageCell.nib/objects-13.0+.nib</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			EMYR3mpT+APQsrdimmrV1g8RmLwMoOLNZlnYmDpIx7s=
-			</data>
-		</dict>
-		<key>RightMessageCell.nib/runtime.nib</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			uIJTSje/rvupuF2XHrWeL8cxH0DO+cbApCsZiMVxEVw=
-			</data>
-		</dict>
-		<key>SkeletonCell.nib/objects-12.3+.nib</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			7HYs34qqg1WChM5epHerE813fzBsw82erONa+GF3nnY=
-			</data>
-		</dict>
-		<key>SkeletonCell.nib/runtime.nib</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			XouXjYCaHO7Ce2uRrCdcVyGNPGSd+1FrrXno0h1hqes=
-			</data>
-		</dict>
-		<key>SponsoredBannerCell.nib</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			lRQ4KkThNvuhqCrYcVNtM5lCL/k8mjkR3pFugIsXS+s=
-			</data>
-		</dict>
-		<key>StreamCell.nib/objects-12.3+.nib</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			4zHnMuQ/FZa+d1k2rHNyUdsXcFVsjTO8/6cJnB/of0Q=
-			</data>
-		</dict>
-		<key>StreamCell.nib/objects-13.0+.nib</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			e1Q1lvTYz7hAU8aIOUrSMFsasyODjAfCMqpimrFBU3g=
-			</data>
-		</dict>
-		<key>StreamCell.nib/runtime.nib</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			q8WKutIo5QMvXk89hbWlGejvWKYcocM/Rja27J0zBhc=
-			</data>
-		</dict>
-		<key>StreamListController.nib/objects-13.0+.nib</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			Q1JL1GT0+YMV5C8GLJT+A8sT/LOtuwIynM33N4Hr1XI=
-			</data>
-		</dict>
-		<key>StreamListController.nib/runtime.nib</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			/fyJ5260egusEJoexa5BQ1pL8pp1wzTmc8qdMoyr7rU=
+			JIwCRLNQ7GiICZaqa+bXeWJ0tJmS1fy77+JRkGqk6jY=
 			</data>
 		</dict>
 	</dict>
